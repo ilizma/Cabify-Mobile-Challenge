@@ -32,6 +32,13 @@ object Versions {
     //customactivityoncrash
     const val customactivityoncrashVersion = "2.4.0"
 
+    //network
+    const val moshiVersion = "1.12.0"
+    const val moshiConverterVersion = "2.9.0"
+    const val retrofitVersion = "2.9.0"
+    const val okhttpLoggingVersion = "4.9.3"
+    const val chuckerVersion = "3.5.2"
+
     //annotation
     const val annotationVersion = "1.4.0"
 

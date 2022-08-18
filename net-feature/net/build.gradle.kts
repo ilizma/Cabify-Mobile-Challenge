@@ -13,15 +13,6 @@ android {
         targetSdk = ConfigData.targetSdk
     }
 
-    buildTypes {
-        getByName("debug") {
-            buildConfigField("String", "BASE_URL", "\"" + Environments.debug.baseURL + "\"")
-        }
-        getByName("release") {
-            buildConfigField("String", "BASE_URL", "\"" + Environments.release.baseURL + "\"")
-        }
-    }
-
     sourceSets {
         getByName("main").java.srcDirs("src/main/kotlin")
     }
@@ -29,18 +20,13 @@ android {
 }
 
 dependencies {
-    implementation(Hilt.hilt)
-    kapt(Hilt.compiler)
+    implementation(Di.hilt)
+    kapt(Di.compiler)
     debugImplementation(Network.chucker)
     releaseImplementation(Network.chuckerNoOp)
     implementation(Network.moshi)
-    implementation(Network.moshiKotlin)
-    implementation(Network.moshiAdapters)
+    implementation(Network.moshiConverter)
     implementation(Network.retrofit)
+    implementation(Network.retrofitAdapter)
     implementation(Network.okhttpLogging)
-    implementation(project(":di-base"))
-
-    // region Net
-    implementation(project(":net"))
-    // endregion
 }

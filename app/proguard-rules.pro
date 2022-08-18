@@ -1,3 +1,13 @@
+#### Retrofit
+-dontwarn retrofit2.Platform$Java8
+-keepclasseswithmembers class * {
+    @retrofit2.http.* <methods>;
+}
+
+#### Okhttp
+-dontwarn okhttp3.**
+-dontwarn okio.**
+
 #### Moshi
 # JSR 305 annotations are for embedding nullability information.
 -dontwarn javax.annotation.**
@@ -26,6 +36,3 @@
   @com.squareup.moshi.FromJson <methods>;
   @com.squareup.moshi.ToJson <methods>;
 }
-
-#### AAChartModel
--keep class com.github.aachartmodel.aainfographics.** { *; }
