@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <!--app:startDestination="@+id/start_screen">
+
+    <fragment
+        android:id="@+id/start_screen"
+        android:name="com.ilizma.cabify.view.fragment.StartScreenFragment"
+        tools:layout="@layout/start_screen_fragment">
+
+        <action
+            android:id="@+id/go_from_start_to_checkout"
+            app:destination="@id/checkout_screen" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/checkout_screen"
+        android:name="com.ilizma.cabify.view.fragment.CheckoutScreenFragment"
+        tools:layout="@layout/checkout_screen_fragment">
+
+        <argument
+            android:name="cabifyScreenArgs"
+            app:argType="com.ilizma.cabify.view.model.CheckoutArgs" />
+
+    </fragment>-->
+
+</navigation>
