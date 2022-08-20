@@ -14,17 +14,17 @@ class ArticleMapper {
     ): Article = when (product) {
         is Mug -> Article.Mug(
             name = product.name,
-            price = product.price
+            price = product.price,
         )
         is TShirt -> Article.TShirt(
             name = product.name,
             price = product.price,
-            discountDescription = discounts.list.first { it is Discount.TShirt }.description
+            discountDescription = discounts.list.first { it is Discount.TShirt }.description,
         )
         is Voucher -> Article.Voucher(
             name = product.name,
             price = product.price,
-            discountDescription = discounts.list.first { it is Discount.Voucher }.description
+            discountDescription = discounts.list.first { it is Discount.Voucher }.description,
         )
     }
 
