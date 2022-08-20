@@ -29,6 +29,7 @@ android {
 }
 
 dependencies {
+
     // region Di
     implementation(Di.hilt)
     kapt(Di.compiler)
@@ -50,4 +51,5 @@ dependencies {
     // region Resources
     implementation(project(":resources"))
     // endregion
+
 }

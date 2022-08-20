@@ -27,6 +27,7 @@ android {
 }
 
 dependencies {
+
     // region Android
     implementation(Android.appcompat)
     implementation(AndroidUI.material)
@@ -49,4 +50,5 @@ dependencies {
     // region Resources
     implementation(project(":resources"))
     // endregion
+
 }

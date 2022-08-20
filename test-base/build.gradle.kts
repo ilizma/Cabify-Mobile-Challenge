@@ -23,6 +23,7 @@ android {
 }
 
 dependencies {
+
     // region Architecture
     implementation(Architecture.lifecycleLivedata)
     // endregion
@@ -30,4 +31,5 @@ dependencies {
     // region Test
     implementation(Test.junitApi)
     // endregion
+
 }

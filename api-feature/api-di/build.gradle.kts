@@ -20,11 +20,13 @@ android {
 }
 
 dependencies {
+
     implementation(Di.hilt)
     kapt(Di.compiler)
     implementation(Network.retrofit)
 
     // region Api
-    implementation(project(":api"))
+    api(project(":api"))
     // endregion
+
 }

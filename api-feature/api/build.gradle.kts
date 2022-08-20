@@ -9,8 +9,10 @@ java {
 }
 
 dependencies {
+
     implementation(Rx.java)
     implementation(Network.moshi)
     implementation(Network.retrofit)
     implementation(Network.retrofitAdapter)
+
 }

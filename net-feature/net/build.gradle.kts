@@ -20,6 +20,7 @@ android {
 }
 
 dependencies {
+
     implementation(Di.hilt)
     kapt(Di.compiler)
     debugImplementation(Network.chucker)
@@ -29,4 +30,5 @@ dependencies {
     implementation(Network.retrofit)
     implementation(Network.retrofitAdapter)
     implementation(Network.okhttpLogging)
+
 }

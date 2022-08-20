@@ -29,6 +29,7 @@ android {
 }
 
 dependencies {
+
     implementation(Di.hilt)
     kapt(Di.compiler)
     debugImplementation(Network.chucker)
@@ -40,6 +41,7 @@ dependencies {
     implementation(Network.okhttpLogging)
 
     // region Net
-    implementation(project(":net"))
+    api(project(":net"))
     // endregion
+
 }

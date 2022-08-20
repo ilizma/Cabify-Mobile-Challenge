@@ -23,6 +23,7 @@ android {
 }
 
 dependencies {
+
     // region Architecture
     implementation(Architecture.lifecycleViewModel)
     implementation(Architecture.lifecycleLivedata)
@@ -31,4 +32,5 @@ dependencies {
     // region Annotation
     implementation(Annotation.annotation)
     // endregion
+
 }

@@ -31,6 +31,7 @@ android {
 }
 
 dependencies {
+
     // region Di
     implementation(Di.hilt)
     kapt(Di.compiler)

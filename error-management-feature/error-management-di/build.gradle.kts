@@ -29,6 +29,7 @@ android {
 }
 
 dependencies {
+
     // region Di
     implementation(Di.hilt)
     kapt(Di.compiler)
@@ -38,7 +39,8 @@ dependencies {
     implementation(project(":view-base"))
 
     // region Error Management
-    implementation(project(":error-management-view"))
-    implementation(project(":error-management-view-imp"))
+    api(project(":error-management-view"))
+    api(project(":error-management-view-imp"))
     // endregion
+
 }

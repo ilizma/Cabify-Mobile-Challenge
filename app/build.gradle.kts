@@ -38,6 +38,7 @@ android {
 }
 
 dependencies {
+
     // region Di
     implementation(Di.hilt)
     kapt(Di.compiler)
@@ -56,18 +57,16 @@ dependencies {
     implementation(project(":presentation-base"))
     // endregion
 
+    // regionResources
+    implementation(project(":resources"))
+    // endregion
+
     // region api
     implementation(project(":api-di"))
-    implementation(project(":api"))
     // endregion
 
     // region net
     implementation(project(":net-di"))
-    implementation(project(":net"))
-    // endregion
-
-    // regionResources
-    implementation(project(":resources"))
     // endregion
 
     // region App
@@ -77,8 +76,14 @@ dependencies {
 
     // region Error Management
     implementation(project(":error-management-di"))
-    implementation(project(":error-management-view"))
-    implementation(project(":error-management-view-imp"))
+    // endregion
+
+    // region Marketplace
+    implementation(project(":marketplace-di"))
+    // endregion
+
+    // region Checkout
+    implementation(project(":checkout-di"))
     // endregion
 
 }
