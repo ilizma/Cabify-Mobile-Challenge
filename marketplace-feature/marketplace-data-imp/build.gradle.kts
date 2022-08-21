@@ -18,10 +18,18 @@ dependencies {
     implementation(Rx.java)
     // endregion
 
+    // region Network
+    implementation(Network.retrofitAdapter)
+    // endregion
+
     // region Test
     testImplementation(Test.mockk)
     testImplementation(Test.junitApi)
     testRuntimeOnly(Test.junitEngine)
+    // endregion
+
+    // region Api
+    implementation(project(":api"))
     // endregion
 
     // region Marketplace

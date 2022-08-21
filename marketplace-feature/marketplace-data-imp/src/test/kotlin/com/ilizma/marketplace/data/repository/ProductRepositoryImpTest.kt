@@ -1,8 +1,8 @@
 package com.ilizma.marketplace.data.repository
 
 import com.ilizma.marketplace.data.datasource.ProductDataSource
-import com.ilizma.marketplace.data.mapper.ProductsMapper
-import com.ilizma.marketplace.domain.model.Products
+import com.ilizma.marketplace.data.mapper.ProductsStateMapper
+import com.ilizma.marketplace.domain.model.ProductsState
 import com.ilizma.marketplace.domain.repository.ProductRepository
 import io.mockk.MockKAnnotations
 import io.mockk.every
@@ -13,7 +13,7 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
-import com.ilizma.marketplace.data.model.Products as DataProducts
+import com.ilizma.marketplace.data.model.ProductsState as DataProductsState
 
 internal class ProductRepositoryImpTest {
 
@@ -21,7 +21,7 @@ internal class ProductRepositoryImpTest {
     private lateinit var dataSource: ProductDataSource
 
     @RelaxedMockK
-    private lateinit var mapper: ProductsMapper
+    private lateinit var mapper: ProductsStateMapper
 
     private lateinit var repository: ProductRepository
 
@@ -38,18 +38,18 @@ internal class ProductRepositoryImpTest {
     }
 
     @Nested
-    inner class GetProducts {
+    inner class GetProductsStateState {
 
         @Test
         fun `given DataProducts, when getPlayerName, then result should be the expected Products`() {
             // given
-            val dataProducts = mockk<DataProducts>()
-            val expected = mockk<Products>()
-            every { dataSource.getProducts() } returns Single.just(dataProducts)
+            val dataProducts = mockk<DataProductsState>()
+            val expected = mockk<ProductsState>()
+            every { dataSource.getProductsState() } returns Single.just(dataProducts)
             every { mapper.from(dataProducts) } returns expected
 
             // when
-            val resultObserver = repository.getProducts()
+            val resultObserver = repository.getProductsState()
                 .observeOn(Schedulers.trampoline())
                 .test()
 

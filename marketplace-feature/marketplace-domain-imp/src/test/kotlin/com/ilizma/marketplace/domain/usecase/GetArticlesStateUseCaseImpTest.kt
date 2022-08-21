@@ -1,9 +1,9 @@
 package com.ilizma.marketplace.domain.usecase
 
-import com.ilizma.marketplace.domain.mapper.ArticlesMapper
-import com.ilizma.marketplace.domain.model.Articles
+import com.ilizma.marketplace.domain.mapper.ArticlesStateMapper
+import com.ilizma.marketplace.domain.model.ArticlesState
 import com.ilizma.marketplace.domain.model.Discounts
-import com.ilizma.marketplace.domain.model.Products
+import com.ilizma.marketplace.domain.model.ProductsState
 import com.ilizma.marketplace.domain.repository.DiscountRepository
 import com.ilizma.marketplace.domain.repository.ProductRepository
 import io.mockk.MockKAnnotations
@@ -16,7 +16,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 
-internal class GetArticlesUseCaseImpTest {
+internal class GetArticlesStateUseCaseImpTest {
 
     @RelaxedMockK
     private lateinit var productRepository: ProductRepository
@@ -25,9 +25,9 @@ internal class GetArticlesUseCaseImpTest {
     private lateinit var discountRepository: DiscountRepository
 
     @RelaxedMockK
-    private lateinit var mapper: ArticlesMapper
+    private lateinit var mapper: ArticlesStateMapper
 
-    private lateinit var useCase: GetArticlesUseCase
+    private lateinit var useCase: GetArticlesStateUseCase
 
     init {
         MockKAnnotations.init(this)
@@ -35,7 +35,7 @@ internal class GetArticlesUseCaseImpTest {
 
     @BeforeEach
     private fun setup() {
-        useCase = GetArticlesUseCaseImp(
+        useCase = GetArticlesStateUseCaseImp(
             productRepository = productRepository,
             discountRepository = discountRepository,
             mapper = mapper,
@@ -46,14 +46,14 @@ internal class GetArticlesUseCaseImpTest {
     inner class Invoke {
 
         @Test
-        fun `given Products and Discounts, when invoked, then result should be the expected Articles`() {
+        fun `given ProductsState and Discounts, when invoked, then result should be the expected Articles`() {
             // given
-            val products = mockk<Products>()
+            val state = mockk<ProductsState>()
             val discounts = mockk<Discounts>()
-            val expected = mockk<Articles>()
-            every { productRepository.getProducts() } returns Single.just(products)
+            val expected = mockk<ArticlesState>()
+            every { productRepository.getProductsState() } returns Single.just(state)
             every { discountRepository.getDiscounts() } returns Single.just(discounts)
-            every { mapper.from(products, discounts) } returns expected
+            every { mapper.from(state, discounts) } returns expected
 
             // when
             val resultObserver = useCase()
