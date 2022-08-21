@@ -163,7 +163,7 @@ internal class ProductsStateMapperTest {
                 // given
                 val errorMessage = "errorMessage"
                 val dataProducts = DataProductsState.RemoteError(errorMessage)
-                val expected = DataProductsState.RemoteError(errorMessage)
+                val expected = ProductsState.RemoteError(errorMessage)
 
                 // when
                 val result = mapper.from(dataProducts)

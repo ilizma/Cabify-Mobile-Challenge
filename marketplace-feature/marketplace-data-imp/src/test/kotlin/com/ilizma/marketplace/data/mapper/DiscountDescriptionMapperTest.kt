@@ -46,7 +46,7 @@ internal class DiscountDescriptionMapperTest {
             )
             val discountDataList = mockk<DiscountDataList>()
             val expected = Promotion(
-                description = "buy two of the same product, get one free"
+                description = "buy 2 of the same product, get 1 free"
             )
             every { quantityMapper.from(discountDescription, discountDataList) } returns 2
             every { offerMapper.from(discountDescription, discountDataList) } returns 1
@@ -66,7 +66,7 @@ internal class DiscountDescriptionMapperTest {
             )
             val discountDataList = mockk<DiscountDataList>()
             val expected = Bulk(
-                description = "buying 3 or more, the price per unit should be 19.00€"
+                description = "buying 3 or more, the price per unit should be 19€"
             )
             every { quantityMapper.from(discountDescription, discountDataList) } returns 3
             every { offerMapper.from(discountDescription, discountDataList) } returns 19

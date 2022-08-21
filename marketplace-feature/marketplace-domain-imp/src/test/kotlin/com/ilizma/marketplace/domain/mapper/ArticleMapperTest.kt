@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test
 class ArticleMapperTest {
 
     private lateinit var mapper: ArticleMapper
-    private val tShirtDiscountDescription = "buying 3 or more, the price per unit should be 19.00€"
+    private val tShirtDiscountDescription = "buying 3 or more, the price per unit should be 19€"
     private val voucherDiscountDescription = "2-for-1"
     private val discounts = Discounts(
         list = listOf(
@@ -32,8 +32,8 @@ class ArticleMapperTest {
         @Test
         fun `given Mug Product, when from, then result should be the expected Mug Article`() {
             // given
-            val product = Product.Mug(name = "Cabify Coffee Mug", price = "7.5€")
-            val expected = Article.Mug(name = "Cabify Coffee Mug", price = "7.5€")
+            val product = Product.Mug(name = "Cabify Coffee Mug", price = "7.50€")
+            val expected = Article.Mug(name = "Cabify Coffee Mug", price = "7.50€")
 
             // when
             val result = mapper.from(product, discounts)
@@ -47,11 +47,11 @@ class ArticleMapperTest {
             // given
             val product = Product.TShirt(
                 name = "Cabify T-Shirt",
-                price = "20€",
+                price = "20.00€",
             )
             val expected = Article.TShirt(
                 name = "Cabify T-Shirt",
-                price = "20€",
+                price = "20.00€",
                 discountDescription = tShirtDiscountDescription,
             )
 
@@ -67,11 +67,11 @@ class ArticleMapperTest {
             // given
             val product = Product.Voucher(
                 name = "Cabify Voucher",
-                price = "5€",
+                price = "5.00€",
             )
             val expected = Article.Voucher(
                 name = "Cabify Voucher",
-                price = "5€",
+                price = "5.00€",
                 discountDescription = voucherDiscountDescription,
             )
 
