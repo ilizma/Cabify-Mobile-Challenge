@@ -2,7 +2,7 @@ package com.ilizma.marketplace.presentation.viewmodel.factory
 
 import androidx.lifecycle.MutableLiveData
 import com.ilizma.marketplace.presentation.mapper.ArticlesStateMapper
-import com.ilizma.marketplace.presentation.model.Article
+import com.ilizma.marketplace.presentation.model.ArticlesState
 import com.ilizma.marketplace.presentation.model.MarketplaceNavigationAction
 import com.ilizma.marketplace.presentation.viewmodel.MarketplaceViewModelImp
 import com.ilizma.presentation.SingleLiveEvent
@@ -20,7 +20,7 @@ interface MarketplaceViewModelAssistedFactory {
         mapper: ArticlesStateMapper,
         backgroundScheduler: Scheduler,
         compositeDisposable: CompositeDisposable,
-        _state: MutableLiveData<Article>,
+        _state: MutableLiveData<ArticlesState>,
         @Assisted(ERROR_ASSISTED) _error: MutableLiveData<String>,
         _navigationAction: SingleLiveEvent<MarketplaceNavigationAction>,
     ): MarketplaceViewModelImp

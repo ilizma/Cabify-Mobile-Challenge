@@ -42,7 +42,7 @@ dependencies {
     implementation(AndroidUI.material)
     // endregion
 
-    // region Ui
+    // region UI
     implementation(UI.shimmer)
     // endregion
 

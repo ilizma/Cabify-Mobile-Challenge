@@ -52,7 +52,7 @@ include(
     // endregion
 
     // region Checkout
-    ":checkout-di",
+    /*":checkout-di",
     ":checkout-flow",
     ":checkout-flow-imp",
     ":checkout-view",
@@ -62,7 +62,7 @@ include(
     ":checkout-domain",
     ":checkout-domain-imp",
     ":checkout-data",
-    ":checkout-data-imp",
+    ":checkout-data-imp",*/
     // endregion
 
 )
@@ -103,7 +103,7 @@ project(":marketplace-data-imp").projectDir = File("marketplace-feature/marketpl
 // endregion
 
 // region Checkout
-project(":checkout-di").projectDir = File("checkout-feature/checkout-di")
+/*project(":checkout-di").projectDir = File("checkout-feature/checkout-di")
 project(":checkout-flow").projectDir = File("checkout-feature/checkout-flow")
 project(":checkout-flow-imp").projectDir = File("checkout-feature/checkout-flow-imp")
 project(":checkout-view").projectDir = File("checkout-feature/checkout-view")
@@ -113,5 +113,5 @@ project(":checkout-presentation-imp").projectDir = File("checkout-feature/checko
 project(":checkout-domain").projectDir = File("checkout-feature/checkout-domain")
 project(":checkout-domain-imp").projectDir = File("checkout-feature/checkout-domain-imp")
 project(":checkout-data").projectDir = File("checkout-feature/checkout-data")
-project(":checkout-data-imp").projectDir = File("checkout-feature/checkout-data-imp")
+project(":checkout-data-imp").projectDir = File("checkout-feature/checkout-data-imp")*/
 // endregion

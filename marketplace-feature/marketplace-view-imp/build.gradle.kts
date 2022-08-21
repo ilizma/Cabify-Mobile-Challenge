@@ -53,6 +53,10 @@ dependencies {
     implementation(AndroidUI.material)
     // endregion
 
+    // region UI
+    implementation(UI.shimmer)
+    // endregion
+
     // region AndroidKtx
     implementation(AndroidKtx.core)
     // endregion

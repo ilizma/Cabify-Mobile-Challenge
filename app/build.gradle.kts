@@ -83,7 +83,7 @@ dependencies {
     // endregion
 
     // region Checkout
-    implementation(project(":checkout-di"))
+    //implementation(project(":checkout-di"))
     // endregion
 
 }

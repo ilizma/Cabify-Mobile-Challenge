@@ -51,4 +51,8 @@ dependencies {
     implementation(project(":view-base"))
     // endregion
 
+    // region Marketplace
+    implementation(project(":marketplace-view"))
+    // endregion
+
 }
