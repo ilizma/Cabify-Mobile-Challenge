@@ -16,8 +16,8 @@ class ArticleMapperTest {
     private val voucherDiscountDescription = "2-for-1"
     private val discounts = Discounts(
         list = listOf(
-            Discount.Voucher(description = voucherDiscountDescription),
-            Discount.TShirt(description = tShirtDiscountDescription),
+            Discount.Promotion(description = voucherDiscountDescription),
+            Discount.Bulk(description = tShirtDiscountDescription),
         ),
     )
 

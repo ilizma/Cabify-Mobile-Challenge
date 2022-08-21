@@ -1,15 +1,17 @@
 package com.ilizma.marketplace.data.mapper
 
+import com.ilizma.marketplace.data.model.DiscountDataList
 import com.ilizma.marketplace.domain.model.Discounts
-import com.ilizma.marketplace.data.model.Discounts as DataDiscounts
+import com.ilizma.marketplace.data.model.DiscountDescriptions
 
 class DiscountsMapper(
-    private val mapper: DiscountMapper,
+    private val mapper: DiscountDescriptionMapper,
 ) {
 
     fun from(
-        products: DataDiscounts,
-    ): Discounts = products.list.map { mapper.from(it) }
+        descriptions: DiscountDescriptions,
+        dataList: DiscountDataList,
+    ): Discounts = descriptions.list.map { mapper.from(it, dataList) }
         .let { Discounts(it) }
 
 }

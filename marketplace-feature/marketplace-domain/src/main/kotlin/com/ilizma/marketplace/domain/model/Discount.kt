@@ -4,13 +4,13 @@ sealed class Discount(
     open val description: String,
 ) {
 
-    data class Voucher(
+    data class Promotion(
         override val description: String,
     ) : Discount(
         description = description,
     )
 
-    data class TShirt(
+    data class Bulk(
         override val description: String,
     ) : Discount(
         description = description,

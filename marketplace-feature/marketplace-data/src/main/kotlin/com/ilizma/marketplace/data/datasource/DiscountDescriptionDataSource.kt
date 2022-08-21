@@ -1,0 +1,10 @@
+package com.ilizma.marketplace.data.datasource
+
+import com.ilizma.marketplace.data.model.DiscountDescriptions
+import io.reactivex.rxjava3.core.Single
+
+interface DiscountDescriptionDataSource {
+
+    fun getDiscountDescriptions(): Single<DiscountDescriptions>
+
+}

@@ -1,7 +1,10 @@
 package com.ilizma.marketplace.data.repository
 
-import com.ilizma.marketplace.data.datasource.DiscountDataSource
+import com.ilizma.marketplace.data.datasource.DiscountDataDataSource
+import com.ilizma.marketplace.data.datasource.DiscountDescriptionDataSource
 import com.ilizma.marketplace.data.mapper.DiscountsMapper
+import com.ilizma.marketplace.data.model.DiscountDataList
+import com.ilizma.marketplace.data.model.DiscountDescriptions
 import com.ilizma.marketplace.domain.model.Discounts
 import com.ilizma.marketplace.domain.repository.DiscountRepository
 import io.mockk.MockKAnnotations
@@ -13,12 +16,14 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
-import com.ilizma.marketplace.data.model.Discounts as DataDiscounts
 
 internal class DiscountRepositoryImpTest {
 
     @RelaxedMockK
-    private lateinit var dataSource: DiscountDataSource
+    private lateinit var descriptionDataSource: DiscountDescriptionDataSource
+
+    @RelaxedMockK
+    private lateinit var dataDataSource: DiscountDataDataSource
 
     @RelaxedMockK
     private lateinit var mapper: DiscountsMapper
@@ -32,21 +37,24 @@ internal class DiscountRepositoryImpTest {
     @BeforeEach
     private fun setup() {
         repository = DiscountRepositoryImp(
-            dataSource = dataSource,
+            descriptionDataSource = descriptionDataSource,
+            dataDataSource = dataDataSource,
             mapper = mapper,
         )
     }
 
     @Nested
-    inner class GetDiscounts {
+    inner class GetDiscountDescriptions {
 
         @Test
-        fun `given DataDiscounts, when getPlayerName, then result should be the expected Discounts`() {
+        fun `given DiscountDescriptions and DiscountDataList, when getDiscounts, then result should be the expected Discounts`() {
             // given
-            val dataDiscounts = mockk<DataDiscounts>()
+            val discountDescriptions = mockk<DiscountDescriptions>()
+            val discountDataList = mockk<DiscountDataList>()
             val expected = mockk<Discounts>()
-            every { dataSource.getDiscounts() } returns Single.just(dataDiscounts)
-            every { mapper.from(dataDiscounts) } returns expected
+            every { descriptionDataSource.getDiscountDescriptions() } returns Single.just(discountDescriptions)
+            every { dataDataSource.getDiscountDataList() } returns Single.just(discountDataList)
+            every { mapper.from(discountDescriptions, discountDataList) } returns expected
 
             // when
             val resultObserver = repository.getDiscounts()

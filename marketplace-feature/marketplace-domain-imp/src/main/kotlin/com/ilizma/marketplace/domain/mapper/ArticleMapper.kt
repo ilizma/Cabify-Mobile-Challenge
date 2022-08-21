@@ -19,12 +19,12 @@ class ArticleMapper {
         is TShirt -> Article.TShirt(
             name = product.name,
             price = product.price,
-            discountDescription = discounts.list.first { it is Discount.TShirt }.description,
+            discountDescription = discounts.list.first { it is Discount.Bulk }.description,
         )
         is Voucher -> Article.Voucher(
             name = product.name,
             price = product.price,
-            discountDescription = discounts.list.first { it is Discount.Voucher }.description,
+            discountDescription = discounts.list.first { it is Discount.Promotion }.description,
         )
     }
 
