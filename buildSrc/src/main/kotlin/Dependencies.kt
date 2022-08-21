@@ -30,6 +30,7 @@ object AndroidUI {
 
 object UI {
     val lottie by lazy { "com.airbnb.android:lottie:${Versions.lottieVersion}" }
+    val shimmer by lazy { "com.facebook.shimmer:shimmer:${Versions.shimmerVersion}" }
 }
 
 object Architecture {

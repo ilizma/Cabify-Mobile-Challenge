@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import com.ilizma.marketplace.domain.model.ArticlesState
 import com.ilizma.marketplace.domain.usecase.GetArticlesStateUseCase
 import com.ilizma.marketplace.presentation.mapper.ArticlesStateMapper
+import com.ilizma.marketplace.presentation.model.Article
 import com.ilizma.marketplace.presentation.model.MarketplaceNavigationAction
 import com.ilizma.marketplace.presentation.model.MarketplaceNavigationAction.CHECKOUT
 import com.ilizma.marketplace.presentation.viewmodel.factory.ERROR_ASSISTED
@@ -34,16 +35,25 @@ class MarketplaceViewModelImp @AssistedInject constructor(
         getState()
     }
 
-    override fun onCheckout() {
-        _navigationAction.postValue(CHECKOUT)
-    }
+    override fun getState() {
+        generateLoadingList()
+            .let { PresentationArticlesState.Loading(it) }
+            .let { _state.postValue(it) }
 
-    private fun getState() {
         useCase()
             .subscribeOn(backgroundScheduler)
             .observeOn(backgroundScheduler)
             .subscribe(::onArticlesState) { throw it }
             .addTo(compositeDisposable)
+    }
+
+
+    override fun onItemSelected(article: Article.Success) {
+        // TODO:
+    }
+
+    override fun onCheckout() {
+        _navigationAction.postValue(CHECKOUT)
     }
 
     private fun onArticlesState(
@@ -55,5 +65,9 @@ class MarketplaceViewModelImp @AssistedInject constructor(
                 .let { _state.postValue(it) }
         }
     }
+
+    private fun generateLoadingList(
+    ): List<Article.Loading> = mutableListOf<Article.Loading>()
+        .let { for (i in 0..15) it.add(Article.Loading); it }
 
 }

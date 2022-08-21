@@ -1,13 +1,19 @@
 package com.ilizma.marketplace.presentation.model
 
-sealed class ArticlesState {
+sealed class ArticlesState(
+    open val list: List<Article>,
+) {
+
+    data class Loading(
+        override val list: List<Article.Loading>,
+    ) : ArticlesState(
+        list = list,
+    )
 
     data class Success(
-        val list: List<Article>,
-    ) : ArticlesState()
-
-    data class RemoteError(
-        val message: String,
-    ) : ArticlesState()
+        override val list: List<Article.Success>,
+    ) : ArticlesState(
+        list = list,
+    )
 
 }

@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import com.ilizma.marketplace.domain.model.ArticlesState
 import com.ilizma.marketplace.domain.usecase.GetArticlesStateUseCase
 import com.ilizma.marketplace.presentation.mapper.ArticlesStateMapper
+import com.ilizma.marketplace.presentation.model.Article
 import com.ilizma.marketplace.presentation.model.MarketplaceNavigationAction
 import com.ilizma.presentation.SingleLiveEvent
 import com.ilizma.test.executor.InstantExecutorExtension
@@ -81,6 +82,26 @@ internal class MarketplaceViewModelImpTest {
 
             // then
             assertEquals(expected, viewModel.error.value)
+        }
+
+    }
+
+    @Nested
+    inner class OnItemSelected {
+
+        // TODO:
+        @Test
+        fun `when onItemSelected, then `() {
+            // given
+            val article = mockk<Article.Success>()
+            //val expected = MarketplaceNavigationAction.CHECKOUT
+            initViewModel()
+
+            // when
+            viewModel.onItemSelected(article)
+
+            // then
+            //assertEquals(expected, viewModel.navigationAction.value)
         }
 
     }

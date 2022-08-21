@@ -24,6 +24,7 @@ object Versions {
     const val constraintLayoutVersion = "2.1.4"
     const val materialVersion = "1.6.1"
     const val lottieVersion = "5.2.0"
+    const val shimmerVersion = "0.5.0"
 
     //android architecture component
     const val navigationVersion = "2.5.0"

@@ -42,4 +42,12 @@ dependencies {
     implementation(AndroidUI.material)
     // endregion
 
+    // region Ui
+    implementation(UI.shimmer)
+    // endregion
+
+    // region Base
+    implementation(project(":view-base"))
+    // endregion
+
 }

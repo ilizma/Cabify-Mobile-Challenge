@@ -39,7 +39,7 @@ internal class ArticlesStateMapperTest {
             // given
             val article = mockk<Article>()
             val articlesState = ArticlesState.Success(listOf(article, article))
-            val presentationArticle = mockk<PresentationArticle>()
+            val presentationArticle = mockk<PresentationArticle.Success>()
             val expected = PresentationArticlesState.Success(
                 listOf(presentationArticle, presentationArticle)
             )

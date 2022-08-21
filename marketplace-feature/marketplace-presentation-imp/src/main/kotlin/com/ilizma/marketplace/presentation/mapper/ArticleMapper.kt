@@ -8,17 +8,17 @@ class ArticleMapper {
 
     fun from(
         article: Article,
-    ): PresentationArticle = when (article) {
-        is Mug -> PresentationArticle.Mug(
+    ): PresentationArticle.Success = when (article) {
+        is Mug -> PresentationArticle.Success.Mug(
             name = article.name,
             price = article.price,
         )
-        is TShirt -> PresentationArticle.TShirt(
+        is TShirt -> PresentationArticle.Success.TShirt(
             name = article.name,
             price = article.price,
             discountDescription = article.discountDescription,
         )
-        is Voucher -> PresentationArticle.Voucher(
+        is Voucher -> PresentationArticle.Success.Voucher(
             name = article.name,
             price = article.price,
             discountDescription = article.discountDescription,
