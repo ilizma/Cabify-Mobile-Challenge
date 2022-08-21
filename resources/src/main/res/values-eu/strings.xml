@@ -13,4 +13,7 @@
     <string name="retry">Berriro</string>
     <string name="empty_list">Zerrenda hutsik</string>
 
+    <string name="promotion_description">erosi berdinezko %s produktu, %s doan izan</string>
+    <string name="bulk_description">%s edo gehiago erosiz, bakoitzaren prezioa %s izango da</string>
+
 </resources>

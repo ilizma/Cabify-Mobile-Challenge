@@ -5,8 +5,8 @@ import com.ilizma.marketplace.data.model.DiscountDescriptions
 import io.reactivex.rxjava3.core.Single
 
 class DiscountDescriptionDataSourceImp(
-    private val promotionText: String,// TODO: buy %s of the same product, get %s free
-    private val bulkText: String,// TODO: buying %s or more, the price per unit should be %s€
+    private val promotionText: String,
+    private val bulkText: String,
 ) : DiscountDescriptionDataSource {
 
     override fun getDiscountDescriptions(

@@ -8,7 +8,7 @@ import java.util.*
 import com.ilizma.marketplace.data.model.Product as DataProduct
 
 class ProductMapper(
-    private val locale: Locale,// TODO: Locale.getDefault()
+    private val locale: Locale,
     private val moneyText: String,
 ) {
 

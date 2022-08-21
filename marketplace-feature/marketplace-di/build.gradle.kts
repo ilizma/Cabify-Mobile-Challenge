@@ -53,6 +53,10 @@ dependencies {
     implementation(project(":presentation-base"))
     // endregion
 
+    // region Api
+    implementation(project(":api"))
+    // endregion
+
     // region Resources
     implementation(project(":resources"))
     // endregion

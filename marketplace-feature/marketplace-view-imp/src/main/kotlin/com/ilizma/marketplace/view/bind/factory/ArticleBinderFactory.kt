@@ -10,7 +10,7 @@ import com.ilizma.marketplace.view.bind.ArticleLoadingBinderImp
 
 class ArticleBinderFactory(
     private val viewModelLazy: Lazy<MarketplaceViewModel>,
-    private val lifecycleOwnerLazy: () -> LifecycleOwner,
+    private val lifecycleOwner: () -> LifecycleOwner,
 ) {
 
     fun createLoading(
@@ -21,7 +21,7 @@ class ArticleBinderFactory(
     ): ArticleItemBinder<Article.Success> = ArticleItemBinderImp(
         viewModel = viewModelLazy.value,
         onClicked = onClicked,
-        lifecycleOwner = lifecycleOwnerLazy,
+        lifecycleOwner = lifecycleOwner,
     )
 
 }

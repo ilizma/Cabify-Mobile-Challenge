@@ -14,7 +14,7 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable
 const val ERROR_ASSISTED = "ERROR_ASSISTED"
 
 @AssistedFactory
-interface GameScreenViewModelAssistedFactory {
+interface MarketplaceViewModelAssistedFactory {
 
     fun create(
         mapper: ArticlesStateMapper,

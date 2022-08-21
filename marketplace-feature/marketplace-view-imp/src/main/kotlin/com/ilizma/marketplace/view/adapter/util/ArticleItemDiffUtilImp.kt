@@ -7,7 +7,10 @@ class ArticleItemDiffUtilImp : ArticleItemDiffUtil<Article>() {
     override fun areItemsTheSame(
         oldItem: Article,
         newItem: Article,
-    ): Boolean = oldItem.name == newItem.name
+    ): Boolean = when (oldItem) {
+        Article.Loading -> newItem is Article.Loading
+        is Article.Success -> if (newItem is Article.Success.Mug) oldItem.name == newItem.name else false
+    }
 
     override fun areContentsTheSame(
         oldItem: Article,

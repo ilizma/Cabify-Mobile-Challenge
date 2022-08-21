@@ -13,4 +13,7 @@
     <string name="retry">Reintentar</string>
     <string name="empty_list">Lista vacía</string>
 
+    <string name="promotion_description">compra %s productos iguales, obten %s gratis</string>
+    <string name="bulk_description">comprando %s o más, el precio por unidad será %s</string>
+
 </resources>

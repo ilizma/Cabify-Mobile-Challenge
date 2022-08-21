@@ -13,4 +13,7 @@
     <string name="retry">Reintentar</string>
     <string name="empty_list">Llista buida</string>
 
+    <string name="promotion_description">compra %s productes iguals, obten %s gratis</string>
+    <string name="bulk_description">comprant %s o més, el preu per unitat serà %s</string>
+
 </resources>

@@ -10,7 +10,7 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.schedulers.Schedulers
 
 class MarketplaceViewModelFactory(
-    private val viewModelAssistedFactory: GameScreenViewModelAssistedFactory,
+    private val viewModelAssistedFactory: MarketplaceViewModelAssistedFactory,
 ) : ViewModelProvider.Factory {
 
     override fun <T : ViewModel> create(
