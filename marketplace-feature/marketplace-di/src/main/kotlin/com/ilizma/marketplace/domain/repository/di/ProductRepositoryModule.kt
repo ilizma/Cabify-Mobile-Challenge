@@ -1,6 +1,7 @@
 package com.ilizma.marketplace.domain.repository.di
 
 import android.content.Context
+import com.ilizma.marketplace.data.cache.ProductCache
 import com.ilizma.marketplace.data.datasource.ProductDataSource
 import com.ilizma.marketplace.data.mapper.ProductMapper
 import com.ilizma.marketplace.data.mapper.ProductsStateMapper
@@ -22,8 +23,10 @@ object ProductRepositoryModule {
     fun provideProductRepository(
         @ApplicationContext context: Context,
         dataSource: ProductDataSource,
+        cache: ProductCache,
     ): ProductRepository = ProductRepositoryImp(
         dataSource = dataSource,
+        cache = cache,
         mapper = ProductsStateMapper(
             mapper = ProductMapper(
                 Locale.getDefault(),
