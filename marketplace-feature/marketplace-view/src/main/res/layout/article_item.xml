@@ -1,9 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/article_item_tv"
+    android:id="@+id/article_item_cl_content"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingHorizontal="@dimen/horizontal_margin"
-    android:paddingVertical="@dimen/vertical_margin"
-    tools:text="T-Shirt" />
+    android:paddingTop="@dimen/vertical_margin">
+
+    <TextView
+        android:id="@+id/article_item_tv_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/article_item_tv_plus"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Voucher" />
+
+    <TextView
+        android:id="@+id/article_item_tv_plus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/article_item_actions_margin"
+        android:padding="@dimen/article_item_action_padding"
+        android:text="+"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/article_item_tv_quantity"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/article_item_tv_quantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/article_item_actions_margin"
+        app:layout_constraintBottom_toBottomOf="@+id/article_item_tv_minus"
+        app:layout_constraintEnd_toStartOf="@+id/article_item_tv_minus"
+        app:layout_constraintTop_toTopOf="@+id/article_item_tv_minus"
+        tools:text="0" />
+
+    <TextView
+        android:id="@+id/article_item_tv_minus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/article_item_actions_margin"
+        android:padding="@dimen/article_item_action_padding"
+        android:text="-"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/article_item_tv_description"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toStartOf="@+id/article_item_tv_price"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/article_item_tv_minus"
+        tools:text="buy 2 of the same product, get 1 free" />
+
+    <TextView
+        android:id="@+id/article_item_tv_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold|italic"
+        app:layout_constraintBottom_toBottomOf="@+id/article_item_tv_description"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/article_item_tv_description"
+        tools:text="5.00€" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="@dimen/vertical_margin"
+        android:background="@color/colorPrimary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/article_item_tv_description" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

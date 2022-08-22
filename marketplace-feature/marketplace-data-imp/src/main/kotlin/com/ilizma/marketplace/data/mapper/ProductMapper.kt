@@ -2,6 +2,7 @@ package com.ilizma.marketplace.data.mapper
 
 import com.ilizma.api.model.ProductCodeDTO
 import com.ilizma.api.model.ProductDTO
+import com.ilizma.marketplace.domain.model.Article
 import com.ilizma.marketplace.domain.model.Product
 import com.ilizma.marketplace.domain.model.Product.*
 import java.util.*
@@ -54,6 +55,23 @@ class ProductMapper(
         is DataProduct.Voucher -> Voucher(
             name = product.name,
             price = product.price,
+        )
+    }
+
+    fun from(
+        article: Article,
+    ): DataProduct = when (article) {
+        is Article.Mug -> DataProduct.Mug(
+            name = article.name,
+            price = article.price,
+        )
+        is Article.TShirt -> DataProduct.TShirt(
+            name = article.name,
+            price = article.price,
+        )
+        is Article.Voucher -> DataProduct.Voucher(
+            name = article.name,
+            price = article.price,
         )
     }
 

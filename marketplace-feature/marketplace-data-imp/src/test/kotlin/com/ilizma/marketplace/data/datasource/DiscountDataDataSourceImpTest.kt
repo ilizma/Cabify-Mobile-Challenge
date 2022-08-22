@@ -2,13 +2,12 @@ package com.ilizma.marketplace.data.datasource
 
 import com.ilizma.marketplace.data.model.DiscountData
 import com.ilizma.marketplace.data.model.DiscountDataList
-import io.mockk.MockKAnnotations
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 
-class DiscountDataDataSourceImpTest {
+internal class DiscountDataDataSourceImpTest {
 
     private lateinit var dataSource: DiscountDataDataSource
 

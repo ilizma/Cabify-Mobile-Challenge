@@ -1,15 +1,20 @@
 package com.ilizma.marketplace.view.bind.factory
 
 import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.MutableLiveData
+import com.ilizma.marketplace.presentation.mapper.ArticleMapper
 import com.ilizma.marketplace.presentation.model.Article
-import com.ilizma.marketplace.presentation.viewmodel.MarketplaceViewModel
+import com.ilizma.marketplace.presentation.viewmodel.ArticleViewModel
+import com.ilizma.marketplace.presentation.viewmodel.factory.ArticleViewModelAssistedFactory
 import com.ilizma.marketplace.view.bind.ArticleItemBinder
 import com.ilizma.marketplace.view.bind.ArticleItemBinderImp
 import com.ilizma.marketplace.view.bind.ArticleLoadingBinder
 import com.ilizma.marketplace.view.bind.ArticleLoadingBinderImp
+import io.reactivex.rxjava3.disposables.CompositeDisposable
+import io.reactivex.rxjava3.schedulers.Schedulers
 
 class ArticleBinderFactory(
-    private val viewModelLazy: Lazy<MarketplaceViewModel>,
+    private val viewModelAssistedFactory: ArticleViewModelAssistedFactory,
     private val lifecycleOwner: () -> LifecycleOwner,
 ) {
 
@@ -19,9 +24,17 @@ class ArticleBinderFactory(
     fun createItem(
         onClicked: (Article.Success) -> Unit,
     ): ArticleItemBinder<Article.Success> = ArticleItemBinderImp(
-        viewModel = viewModelLazy.value,
+        viewModel = createViewModel(),
         onClicked = onClicked,
         lifecycleOwner = lifecycleOwner,
+    )
+
+    private fun createViewModel(
+    ): ArticleViewModel = viewModelAssistedFactory.create(
+        mapper = ArticleMapper(),
+        backgroundScheduler = Schedulers.io(),
+        compositeDisposable = CompositeDisposable(),
+        _quantity = MutableLiveData(),
     )
 
 }

@@ -10,7 +10,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 
-class ArticlesStateMapperTest {
+internal class ArticlesStateMapperTest {
 
     @RelaxedMockK
     private lateinit var articleMapper: ArticleMapper

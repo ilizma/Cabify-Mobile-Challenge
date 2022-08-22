@@ -25,4 +25,23 @@ class ArticleMapper {
         )
     }
 
+    fun from(
+        article: PresentationArticle.Success,
+    ): Article = when (article) {
+        is PresentationArticle.Success.Mug -> Mug(
+            name = article.name,
+            price = article.price,
+        )
+        is PresentationArticle.Success.TShirt -> TShirt(
+            name = article.name,
+            price = article.price,
+            discountDescription = article.discountDescription,
+        )
+        is PresentationArticle.Success.Voucher -> Voucher(
+            name = article.name,
+            price = article.price,
+            discountDescription = article.discountDescription,
+        )
+    }
+
 }

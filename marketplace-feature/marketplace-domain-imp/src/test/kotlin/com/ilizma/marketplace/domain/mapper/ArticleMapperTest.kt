@@ -9,7 +9,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 
-class ArticleMapperTest {
+internal class ArticleMapperTest {
 
     private lateinit var mapper: ArticleMapper
     private val tShirtDiscountDescription = "buying 3 or more, the price per unit should be 19€"

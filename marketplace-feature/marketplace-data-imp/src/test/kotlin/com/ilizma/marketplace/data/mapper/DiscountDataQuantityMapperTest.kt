@@ -9,7 +9,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 
-class DiscountDataQuantityMapperTest {
+internal class DiscountDataQuantityMapperTest {
 
     private lateinit var mapper: DiscountDataQuantityMapper
     private val discountDataList = DiscountDataList(

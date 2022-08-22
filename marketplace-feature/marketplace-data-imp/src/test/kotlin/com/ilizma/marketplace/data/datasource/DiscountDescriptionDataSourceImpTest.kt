@@ -7,7 +7,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 
-class DiscountDescriptionDataSourceImpTest {
+internal class DiscountDescriptionDataSourceImpTest {
 
     private lateinit var dataSource: DiscountDescriptionDataSource
     private val promotionText = "buy %s of the same product, get %s free"

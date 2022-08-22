@@ -1,6 +1,6 @@
 package com.ilizma.marketplace.data.repository
 
-import com.ilizma.marketplace.data.cache.ProductCache
+import com.ilizma.marketplace.data.cache.ProductSuccessCache
 import com.ilizma.marketplace.data.datasource.ProductDataSource
 import com.ilizma.marketplace.data.mapper.ProductsStateMapper
 import com.ilizma.marketplace.domain.model.ProductsState
@@ -10,7 +10,7 @@ import com.ilizma.marketplace.data.model.ProductsState as DataProductsState
 
 class ProductRepositoryImp(
     private val dataSource: ProductDataSource,
-    private val cache: ProductCache,
+    private val cache: ProductSuccessCache,
     private val mapper: ProductsStateMapper,
 ) : ProductRepository {
 
@@ -20,7 +20,7 @@ class ProductRepositoryImp(
 
     private fun getFromCacheIfExist(
     ): Single<ProductsState>? = cache.get()
-        ?.let { it as ProductsState }
+        ?.let { mapper.from(it) }
         ?.let { Single.just(it) }
 
     private fun getFromRemote(
