@@ -41,14 +41,17 @@ dependencies {
     testImplementation(project(":test-base"))
     // endregion
 
-    //region App
+    // region App
     implementation(project(":app-flow"))
     // endregion
 
-    //region Marketplace
-    implementation(project(":marketplace-flow"))
+    // region Marketplace
     implementation(project(":marketplace-view"))
     implementation(project(":marketplace-presentation"))
+    // endregion
+
+    // region Checkout
+    implementation(project(":checkout-flow"))
     // endregion
 
 }

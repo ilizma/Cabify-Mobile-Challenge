@@ -61,12 +61,11 @@ dependencies {
     implementation(project(":resources"))
     // endregion
 
-    //region App
+    // region App
     implementation(project(":app-flow"))
     // endregion
 
     // region Marketplace
-    api(project(":marketplace-flow"))
     api(project(":marketplace-flow-imp"))
     api(project(":marketplace-view"))
     api(project(":marketplace-view-imp"))
@@ -76,6 +75,10 @@ dependencies {
     api(project(":marketplace-domain-imp"))
     api(project(":marketplace-data"))
     api(project(":marketplace-data-imp"))
+    // endregion
+
+    // region Checkout
+    api(project(":checkout-flow"))
     // endregion
 
 }

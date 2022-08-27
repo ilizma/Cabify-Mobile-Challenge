@@ -1,5 +1,9 @@
 package com.ilizma.marketplace.presentation.model
 
-enum class MarketplaceNavigationAction {
-    CHECKOUT,
+sealed class MarketplaceNavigationAction {
+
+    data class Checkout(
+        val articlesCheckoutInfo: ArticlesCheckoutInfo,
+    ) : MarketplaceNavigationAction()
+
 }

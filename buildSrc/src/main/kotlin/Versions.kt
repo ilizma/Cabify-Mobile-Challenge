@@ -2,7 +2,7 @@ object Versions {
     //project
     const val buildGradleVersion = "7.2.1"
     const val kotlinVersion = "1.7.10"
-    const val hiltVersion = "2.43"
+    const val hiltVersion = "2.43.2"
     const val junitVersion = "1.8.2.1"
 
     //rx
@@ -11,7 +11,7 @@ object Versions {
     const val rxBindingVersion = "4.0.0"
 
     //Fragment
-    const val fragmentKtxVersion = "1.5.0"
+    const val fragmentKtxVersion = "1.5.2"
 
     //android
     const val supportVersion = "1.4.2"
@@ -44,6 +44,7 @@ object Versions {
     const val annotationVersion = "1.4.0"
 
     //test
-    const val mockkVersion = "1.12.4"
+    const val mockkVersion = "1.12.5"
     const val junitJupiterVersion = "5.8.2"
+    const val runnerVersion = "1.4.0"
 }

@@ -1,13 +1,17 @@
 package com.ilizma.marketplace.view.bind
 
+import androidx.core.view.isInvisible
+import androidx.core.view.isVisible
 import androidx.lifecycle.LifecycleOwner
 import com.ilizma.marketplace.presentation.model.Article
 import com.ilizma.marketplace.presentation.model.ArticlesState
+import com.ilizma.marketplace.presentation.model.CheckoutState
 import com.ilizma.marketplace.presentation.viewmodel.MarketplaceViewModel
 import com.ilizma.marketplace.view.adapter.ArticlesAdapter
 import com.ilizma.marketplace.view.adapter.factory.ArticlesAdapterFactory
 import com.ilizma.marketplace.view.databinding.MarketplaceScreenFragmentBinding
 import com.ilizma.resources.R
+import com.ilizma.view.extensions.setOnReactiveClickListener
 import com.ilizma.view.extensions.snackbar
 
 class MarketplaceScreenFragmentBinderImp(
@@ -22,8 +26,13 @@ class MarketplaceScreenFragmentBinderImp(
 
     override fun bind(binding: MarketplaceScreenFragmentBinding) {
         this.binding = binding
+        setupListener()
         setupAdapter()
         setupObservers()
+    }
+
+    private fun setupListener() {
+        binding.marketplaceScreenBCheckout.setOnReactiveClickListener { viewModel.onCheckout() }
     }
 
     private fun setupAdapter() {
@@ -38,6 +47,10 @@ class MarketplaceScreenFragmentBinderImp(
         viewModel.error.observe(
             lifecycleOwner(),
             ::onError,
+        )
+        viewModel.checkoutState.observe(
+            lifecycleOwner(),
+            ::onCheckoutState,
         )
     }
 
@@ -54,6 +67,13 @@ class MarketplaceScreenFragmentBinderImp(
             title = errorMessage,
             action = binding.root.context.getString(R.string.retry)
         ) { viewModel.getState() }
+    }
+
+    private fun onCheckoutState(
+        state: CheckoutState,
+    ) {
+        binding.marketplaceScreenBCheckout.isInvisible = state == CheckoutState.LOADING
+        binding.marketplaceScreenPbCheckout.isVisible = state == CheckoutState.LOADING
     }
 
 }

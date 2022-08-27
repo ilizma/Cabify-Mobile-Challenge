@@ -43,7 +43,7 @@ internal class ProductsStateMapperTest {
         inner class Dto {
 
             @Test
-            fun `given Result ProductsDTO, when from is called, then result should be te expected Success DataProductsState`() {
+            fun `given Result ProductsDTO, when from is called, then result should be the expected Success DataProductsState`() {
                 // given
                 val productDTO = mockk<ProductDTO>()
                 val resultDTO = mockk<Result<ProductsDTO>>()
@@ -61,7 +61,7 @@ internal class ProductsStateMapperTest {
             }
 
             @Test
-            fun `given Result ProductsDTO with null products, when from is called, then result should be te expected RemoteError DataProductsState`() {
+            fun `given Result ProductsDTO with null products, when from is called, then result should be the expected RemoteError DataProductsState`() {
                 // given
                 val resultDTO = mockk<Result<ProductsDTO>>()
                 val expected = DataProductsState.RemoteError(unknownErrorMessage)
@@ -76,7 +76,7 @@ internal class ProductsStateMapperTest {
             }
 
             @Test
-            fun `given Result ProductsDTO with null body, when from is called, then result should be te expected RemoteError DataProductsState`() {
+            fun `given Result ProductsDTO with null body, when from is called, then result should be the expected RemoteError DataProductsState`() {
                 // given
                 val resultDTO = mockk<Result<ProductsDTO>>()
                 val expected = DataProductsState.RemoteError(unknownErrorMessage)
@@ -91,7 +91,7 @@ internal class ProductsStateMapperTest {
             }
 
             @Test
-            fun `given Result ProductsDTO with null response, when from is called, then result should be te expected RemoteError DataProductsState`() {
+            fun `given Result ProductsDTO with null response, when from is called, then result should be the expected RemoteError DataProductsState`() {
                 // given
                 val resultDTO = mockk<Result<ProductsDTO>>()
                 val expected = DataProductsState.RemoteError(unknownErrorMessage)
@@ -106,7 +106,7 @@ internal class ProductsStateMapperTest {
             }
 
             @Test
-            fun `given error Result ProductsDTO with errorMessage, when from is called, then result should be te expected RemoteError DataProductsState`() {
+            fun `given error Result ProductsDTO with errorMessage, when from is called, then result should be the expected RemoteError DataProductsState`() {
                 // given
                 val errorMessage = "errorMessage"
                 val resultDTO = mockk<Result<ProductsDTO>>()
@@ -122,7 +122,7 @@ internal class ProductsStateMapperTest {
             }
 
             @Test
-            fun `given error Result ProductsDTO with null errorMessage, when from is called, then result should be te expected RemoteError DataProductsState`() {
+            fun `given error Result ProductsDTO with null errorMessage, when from is called, then result should be the expected RemoteError DataProductsState`() {
                 // given
                 val errorMessage = null
                 val resultDTO = mockk<Result<ProductsDTO>>()
@@ -143,7 +143,7 @@ internal class ProductsStateMapperTest {
         inner class Data {
 
             @Test
-            fun `given Success DataProductsState, when from is called, then result should be te expected Success ProductsState`() {
+            fun `given Success DataProductsState, when from is called, then result should be the expected Success ProductsState`() {
                 // given
                 val dataProduct = mockk<DataProduct>()
                 val dataProducts = DataProductsState.Success(listOf(dataProduct, dataProduct))
@@ -159,7 +159,7 @@ internal class ProductsStateMapperTest {
             }
 
             @Test
-            fun `given RemoteError DataProductsState, when from is called, then result should be te expected RemoteError ProductsState`() {
+            fun `given RemoteError DataProductsState, when from is called, then result should be the expected RemoteError ProductsState`() {
                 // given
                 val errorMessage = "errorMessage"
                 val dataProducts = DataProductsState.RemoteError(errorMessage)

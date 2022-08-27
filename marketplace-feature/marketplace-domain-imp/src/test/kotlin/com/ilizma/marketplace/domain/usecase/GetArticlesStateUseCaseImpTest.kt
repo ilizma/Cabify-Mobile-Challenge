@@ -2,7 +2,7 @@ package com.ilizma.marketplace.domain.usecase
 
 import com.ilizma.marketplace.domain.mapper.ArticlesStateMapper
 import com.ilizma.marketplace.domain.model.ArticlesState
-import com.ilizma.marketplace.domain.model.Discounts
+import com.ilizma.marketplace.domain.model.DiscountDescriptions
 import com.ilizma.marketplace.domain.model.ProductsState
 import com.ilizma.marketplace.domain.repository.DiscountRepository
 import com.ilizma.marketplace.domain.repository.ProductRepository
@@ -49,11 +49,11 @@ internal class GetArticlesStateUseCaseImpTest {
         fun `given ProductsState and Discounts, when invoked, then result should be the expected Articles`() {
             // given
             val state = mockk<ProductsState>()
-            val discounts = mockk<Discounts>()
+            val discountDescriptions = mockk<DiscountDescriptions>()
             val expected = mockk<ArticlesState>()
             every { productRepository.getProductsState() } returns Single.just(state)
-            every { discountRepository.getDiscounts() } returns Single.just(discounts)
-            every { mapper.from(state, discounts) } returns expected
+            every { discountRepository.getDiscountsDescriptions() } returns Single.just(discountDescriptions)
+            every { mapper.from(state, discountDescriptions) } returns expected
 
             // when
             val resultObserver = useCase()

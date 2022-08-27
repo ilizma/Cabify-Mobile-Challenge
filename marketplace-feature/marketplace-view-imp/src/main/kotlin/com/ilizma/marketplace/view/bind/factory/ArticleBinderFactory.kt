@@ -22,10 +22,8 @@ class ArticleBinderFactory(
     ): ArticleLoadingBinder = ArticleLoadingBinderImp()
 
     fun createItem(
-        onClicked: (Article.Success) -> Unit,
     ): ArticleItemBinder<Article.Success> = ArticleItemBinderImp(
         viewModel = createViewModel(),
-        onClicked = onClicked,
         lifecycleOwner = lifecycleOwner,
     )
 

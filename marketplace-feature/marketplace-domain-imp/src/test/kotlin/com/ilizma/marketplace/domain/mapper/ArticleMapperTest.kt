@@ -1,8 +1,8 @@
 package com.ilizma.marketplace.domain.mapper
 
 import com.ilizma.marketplace.domain.model.Article
-import com.ilizma.marketplace.domain.model.Discount
-import com.ilizma.marketplace.domain.model.Discounts
+import com.ilizma.marketplace.domain.model.DiscountDescription
+import com.ilizma.marketplace.domain.model.DiscountDescriptions
 import com.ilizma.marketplace.domain.model.Product
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
@@ -14,10 +14,10 @@ internal class ArticleMapperTest {
     private lateinit var mapper: ArticleMapper
     private val tShirtDiscountDescription = "buying 3 or more, the price per unit should be 19€"
     private val voucherDiscountDescription = "2-for-1"
-    private val discounts = Discounts(
+    private val discountDescriptions = DiscountDescriptions(
         list = listOf(
-            Discount.Promotion(description = voucherDiscountDescription),
-            Discount.Bulk(description = tShirtDiscountDescription),
+            DiscountDescription.Promotion(description = voucherDiscountDescription),
+            DiscountDescription.Bulk(description = tShirtDiscountDescription),
         ),
     )
 
@@ -36,7 +36,7 @@ internal class ArticleMapperTest {
             val expected = Article.Mug(name = "Cabify Coffee Mug", price = "7.50€")
 
             // when
-            val result = mapper.from(product, discounts)
+            val result = mapper.from(product, discountDescriptions)
 
             // then
             assertEquals(expected, result)
@@ -56,7 +56,7 @@ internal class ArticleMapperTest {
             )
 
             // when
-            val result = mapper.from(product, discounts)
+            val result = mapper.from(product, discountDescriptions)
 
             // then
             assertEquals(expected, result)
@@ -76,7 +76,7 @@ internal class ArticleMapperTest {
             )
 
             // when
-            val result = mapper.from(product, discounts)
+            val result = mapper.from(product, discountDescriptions)
 
             // then
             assertEquals(expected, result)

@@ -11,6 +11,10 @@ include(
     ":test-base",
     // endregion
 
+    // region AndroidTest
+    ":android-test-base",
+    // endregion
+
     // region Resources
     ":resources",
     // endregion
@@ -39,7 +43,6 @@ include(
 
     // region Marketplace
     ":marketplace-di",
-    ":marketplace-flow",
     ":marketplace-flow-imp",
     ":marketplace-view",
     ":marketplace-view-imp",
@@ -52,10 +55,10 @@ include(
     // endregion
 
     // region Checkout
-    /*":checkout-di",
+    ":checkout-di",
     ":checkout-flow",
     ":checkout-flow-imp",
-    ":checkout-view",
+    /*":checkout-view",
     ":checkout-view-imp",
     ":checkout-presentation",
     ":checkout-presentation-imp",
@@ -90,7 +93,6 @@ project(":error-management-view-imp").projectDir = File("error-management-featur
 
 // region Marketplace
 project(":marketplace-di").projectDir = File("marketplace-feature/marketplace-di")
-project(":marketplace-flow").projectDir = File("marketplace-feature/marketplace-flow")
 project(":marketplace-flow-imp").projectDir = File("marketplace-feature/marketplace-flow-imp")
 project(":marketplace-view").projectDir = File("marketplace-feature/marketplace-view")
 project(":marketplace-view-imp").projectDir = File("marketplace-feature/marketplace-view-imp")
@@ -103,10 +105,10 @@ project(":marketplace-data-imp").projectDir = File("marketplace-feature/marketpl
 // endregion
 
 // region Checkout
-/*project(":checkout-di").projectDir = File("checkout-feature/checkout-di")
+project(":checkout-di").projectDir = File("checkout-feature/checkout-di")
 project(":checkout-flow").projectDir = File("checkout-feature/checkout-flow")
 project(":checkout-flow-imp").projectDir = File("checkout-feature/checkout-flow-imp")
-project(":checkout-view").projectDir = File("checkout-feature/checkout-view")
+/*project(":checkout-view").projectDir = File("checkout-feature/checkout-view")
 project(":checkout-view-imp").projectDir = File("checkout-feature/checkout-view-imp")
 project(":checkout-presentation").projectDir = File("checkout-feature/checkout-presentation")
 project(":checkout-presentation-imp").projectDir = File("checkout-feature/checkout-presentation-imp")

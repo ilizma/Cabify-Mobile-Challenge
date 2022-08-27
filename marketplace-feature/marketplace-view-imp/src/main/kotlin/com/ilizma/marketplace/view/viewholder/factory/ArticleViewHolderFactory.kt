@@ -17,21 +17,19 @@ class ArticleViewHolderFactory {
         binderFactory: ArticleBinderFactory,
         parent: ViewGroup,
         type: ArticleType,
-        onClicked: (Article.Success) -> Unit,
     ): ArticleViewHolder<Article> = LayoutInflater.from(parent.context)
-        .let { viewHolder(binderFactory, type, it, parent, onClicked) }
+        .let { viewHolder(binderFactory, type, it, parent) }
 
     private fun viewHolder(
         binderFactory: ArticleBinderFactory,
         type: ArticleType,
         inflater: LayoutInflater,
         parent: ViewGroup,
-        onClicked: (Article.Success) -> Unit,
     ): ArticleViewHolder<Article> = when (type) {
         ArticleType.TYPE_LOADING -> ArticleLoadingBinding.inflate(inflater, parent, false)
             .let { ArticleLoadingViewHolderImp(binderFactory.createLoading(), it) }
         ArticleType.TYPE_ITEM -> ArticleItemBinding.inflate(inflater, parent, false)
-            .let { ArticleItemViewHolderImp(binderFactory.createItem(onClicked), it) }
+            .let { ArticleItemViewHolderImp(binderFactory.createItem(), it) }
         else -> throw IllegalArgumentException("Invalid Article viewType: $type")
     }
 

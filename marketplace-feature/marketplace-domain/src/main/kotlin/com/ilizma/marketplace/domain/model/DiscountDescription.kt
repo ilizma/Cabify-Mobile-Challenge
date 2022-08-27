@@ -1,18 +1,18 @@
 package com.ilizma.marketplace.domain.model
 
-sealed class Discount(
+sealed class DiscountDescription(
     open val description: String,
 ) {
 
     data class Promotion(
         override val description: String,
-    ) : Discount(
+    ) : DiscountDescription(
         description = description,
     )
 
     data class Bulk(
         override val description: String,
-    ) : Discount(
+    ) : DiscountDescription(
         description = description,
     )
 

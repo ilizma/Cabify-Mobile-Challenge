@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import com.ilizma.marketplace.presentation.model.Article
 import com.ilizma.marketplace.presentation.model.ArticlesState
+import com.ilizma.marketplace.presentation.model.CheckoutState
 import com.ilizma.marketplace.presentation.model.MarketplaceNavigationAction
 
 abstract class MarketplaceViewModel : ViewModel() {
@@ -12,11 +13,11 @@ abstract class MarketplaceViewModel : ViewModel() {
 
     abstract val error: LiveData<String>
 
+    abstract val checkoutState: LiveData<CheckoutState>
+
     abstract val navigationAction: LiveData<MarketplaceNavigationAction>
 
     abstract fun getState()
-
-    abstract fun onItemSelected(article: Article.Success)
 
     abstract fun onCheckout()
 

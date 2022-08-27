@@ -64,14 +64,14 @@ dependencies {
     // region Checkout
     api(project(":checkout-flow"))
     api(project(":checkout-flow-imp"))
-    api(project(":checkout-view"))
+    /*api(project(":checkout-view"))
     api(project(":checkout-view-imp"))
     api(project(":checkout-presentation"))
     api(project(":checkout-presentation-imp"))
     api(project(":checkout-domain"))
     api(project(":checkout-domain-imp"))
     api(project(":checkout-data"))
-    api(project(":checkout-data-imp"))
+    api(project(":checkout-data-imp"))*/
     // endregion
 
 }

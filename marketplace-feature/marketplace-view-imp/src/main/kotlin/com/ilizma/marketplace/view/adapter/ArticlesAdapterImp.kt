@@ -2,7 +2,6 @@ package com.ilizma.marketplace.view.adapter
 
 import android.view.ViewGroup
 import com.ilizma.marketplace.presentation.model.Article
-import com.ilizma.marketplace.presentation.viewmodel.MarketplaceViewModel
 import com.ilizma.marketplace.view.adapter.util.ArticleItemDiffUtil
 import com.ilizma.marketplace.view.bind.factory.ArticleBinderFactory
 import com.ilizma.marketplace.view.mapper.ArticleTypeMapper
@@ -16,7 +15,6 @@ class ArticlesAdapterImp(
     liveChannelItemDiffUtil: ArticleItemDiffUtil<Article>,
     private val viewHolderFactory: ArticleViewHolderFactory,
     private val mapper: ArticleTypeMapper,
-    private val viewModel: MarketplaceViewModel,
 ) : ArticlesAdapter<Article>(liveChannelItemDiffUtil) {
 
     override fun onCreateViewHolder(
@@ -26,7 +24,6 @@ class ArticlesAdapterImp(
         binderFactory = binderFactory,
         parent = parent,
         type = mapper.from(viewType),
-        onClicked = { viewModel.onItemSelected(it) },
     )
 
     override fun onBindViewHolder(holder: ArticleViewHolder<Article>, position: Int) {

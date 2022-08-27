@@ -4,6 +4,7 @@ import android.content.Context
 import com.ilizma.marketplace.data.cache.ProductSuccessCache
 import com.ilizma.marketplace.data.datasource.ProductDataSource
 import com.ilizma.marketplace.data.mapper.ProductMapper
+import com.ilizma.marketplace.data.mapper.ProductsMapper
 import com.ilizma.marketplace.data.mapper.ProductsStateMapper
 import com.ilizma.marketplace.data.repository.ProductRepositoryImp
 import com.ilizma.marketplace.domain.repository.ProductRepository
@@ -27,12 +28,18 @@ object ProductRepositoryModule {
     ): ProductRepository = ProductRepositoryImp(
         dataSource = dataSource,
         cache = cache,
-        mapper = ProductsStateMapper(
+        productsStateMapper = ProductsStateMapper(
             mapper = ProductMapper(
-                Locale.getDefault(),
+                locale = Locale.getDefault(),
                 moneyText = context.getString(R.string.money_symbol),
             ),
             unknownErrorMessage = context.getString(R.string.unknown_error),
+        ),
+        productsMapper = ProductsMapper(
+            ProductMapper(
+                locale = Locale.getDefault(),
+                moneyText = context.getString(R.string.money_symbol),
+            ),
         ),
     )
 

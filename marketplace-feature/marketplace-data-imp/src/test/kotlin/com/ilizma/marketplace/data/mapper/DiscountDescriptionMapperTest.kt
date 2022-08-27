@@ -2,8 +2,8 @@ package com.ilizma.marketplace.data.mapper
 
 import com.ilizma.marketplace.data.model.DiscountDataList
 import com.ilizma.marketplace.data.model.DiscountDescription
-import com.ilizma.marketplace.domain.model.Discount.Bulk
-import com.ilizma.marketplace.domain.model.Discount.Promotion
+import com.ilizma.marketplace.domain.model.DiscountDescription.Bulk
+import com.ilizma.marketplace.domain.model.DiscountDescription.Promotion
 import io.mockk.MockKAnnotations
 import io.mockk.every
 import io.mockk.impl.annotations.RelaxedMockK
@@ -39,7 +39,7 @@ internal class DiscountDescriptionMapperTest {
     inner class From {
 
         @Test
-        fun `given Promotion DiscountDescription and discountDataList, when from is called, then result should be te expected Promotion`() {
+        fun `given Promotion DiscountDescription and discountDataList, when from is called, then result should be the expected Promotion`() {
             // given
             val discountDescription = DiscountDescription.Promotion(
                 description = "buy %s of the same product, get %s free"
@@ -59,7 +59,7 @@ internal class DiscountDescriptionMapperTest {
         }
 
         @Test
-        fun `given Bulk DiscountDescription and discountDataList, when from is called, then result should be te expected Bulk`() {
+        fun `given Bulk DiscountDescription and discountDataList, when from is called, then result should be the expected Bulk`() {
             // given
             val discountDescription = DiscountDescription.Bulk(
                 description = "buying %s or more, the price per unit should be %s€"

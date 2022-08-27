@@ -24,7 +24,7 @@ object ArticleRepositoryModule {
     ): ArticleRepository = ArticleRepositoryImp(
         cache = cache,
         mapper = ProductMapper(
-            Locale.getDefault(),
+            locale = Locale.getDefault(),
             moneyText = context.getString(R.string.money_symbol),
         ),
     )

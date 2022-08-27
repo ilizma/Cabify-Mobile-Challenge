@@ -13,7 +13,6 @@ class ArticlesAdapterFactoryImp(
     private val binderFactory: ArticleBinderFactory,
     private val diffUtil: ArticleItemDiffUtil<Article>,
     private val viewHolderFactory: ArticleViewHolderFactory,
-    private val viewModelLazy: Lazy<MarketplaceViewModel>,
 ) : ArticlesAdapterFactory<Article> {
 
     override fun create(
@@ -22,7 +21,6 @@ class ArticlesAdapterFactoryImp(
         liveChannelItemDiffUtil = diffUtil,
         viewHolderFactory = viewHolderFactory,
         mapper = ArticleTypeMapper(),
-        viewModel = viewModelLazy.value,
     )
 
 }

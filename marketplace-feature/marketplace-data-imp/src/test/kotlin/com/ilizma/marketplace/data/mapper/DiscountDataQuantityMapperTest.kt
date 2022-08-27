@@ -5,6 +5,7 @@ import com.ilizma.marketplace.data.model.DiscountDataList
 import com.ilizma.marketplace.data.model.DiscountDescription
 import io.mockk.mockk
 import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
@@ -28,7 +29,7 @@ internal class DiscountDataQuantityMapperTest {
     inner class From {
 
         @Test
-        fun `given Promotion DiscountDescription and discountDataList, when from is called, then result should be te expected quantity`() {
+        fun `given Promotion DiscountDescription and discountDataList, when from is called, then result should be the expected quantity`() {
             // given
             val discountDescription = mockk<DiscountDescription.Promotion>()
             val expected = 2
@@ -37,11 +38,11 @@ internal class DiscountDataQuantityMapperTest {
             val result = mapper.from(discountDescription, discountDataList)
 
             // then
-            Assertions.assertEquals(expected, result)
+            assertEquals(expected, result)
         }
 
         @Test
-        fun `given Bulk DiscountDescription and discountDataList, when from is called, then result should be te expected quantity`() {
+        fun `given Bulk DiscountDescription and discountDataList, when from is called, then result should be the expected quantity`() {
             // given
             val discountDescription = mockk<DiscountDescription.Bulk>()
             val expected = 3
@@ -50,7 +51,7 @@ internal class DiscountDataQuantityMapperTest {
             val result = mapper.from(discountDescription, discountDataList)
 
             // then
-            Assertions.assertEquals(expected, result)
+            assertEquals(expected, result)
         }
 
     }

@@ -2,6 +2,7 @@ package com.ilizma.marketplace.data.repository
 
 import com.ilizma.marketplace.data.cache.ProductSuccessCache
 import com.ilizma.marketplace.data.datasource.ProductDataSource
+import com.ilizma.marketplace.data.mapper.ProductsMapper
 import com.ilizma.marketplace.data.mapper.ProductsStateMapper
 import com.ilizma.marketplace.domain.model.ProductsState
 import com.ilizma.marketplace.domain.repository.ProductRepository
@@ -26,7 +27,10 @@ internal class ProductRepositoryImpTest {
     private lateinit var cache: ProductSuccessCache
 
     @RelaxedMockK
-    private lateinit var mapper: ProductsStateMapper
+    private lateinit var productsStateMapper: ProductsStateMapper
+
+    @RelaxedMockK
+    private lateinit var productsMapper: ProductsMapper
 
     private lateinit var repository: ProductRepository
 
@@ -39,7 +43,8 @@ internal class ProductRepositoryImpTest {
         repository = ProductRepositoryImp(
             dataSource = dataSource,
             cache = cache,
-            mapper = mapper,
+            productsStateMapper = productsStateMapper,
+            productsMapper = productsMapper,
         )
     }
 
@@ -53,7 +58,7 @@ internal class ProductRepositoryImpTest {
             val expected = mockk<ProductsState.Success>()
             every { cache.get() } returns null
             every { dataSource.getProductsState() } returns Single.just(dataState)
-            every { mapper.from(dataState) } returns expected
+            every { productsStateMapper.from(dataState) } returns expected
 
             // when
             val resultObserver = repository.getProductsState()
@@ -72,7 +77,7 @@ internal class ProductRepositoryImpTest {
             val expected = mockk<ProductsState.RemoteError>()
             every { cache.get() } returns null
             every { dataSource.getProductsState() } returns Single.just(dataState)
-            every { mapper.from(dataState) } returns expected
+            every { productsStateMapper.from(dataState) } returns expected
 
             // when
             val resultObserver = repository.getProductsState()
@@ -90,7 +95,7 @@ internal class ProductRepositoryImpTest {
             val dataState = mockk<DataProductsState.Success>()
             val expected = mockk<ProductsState.Success>()
             every { cache.get() } returns dataState
-            every { mapper.from(dataState) } returns expected
+            every { productsStateMapper.from(dataState) } returns expected
 
             // when
             val resultObserver = repository.getProductsState()

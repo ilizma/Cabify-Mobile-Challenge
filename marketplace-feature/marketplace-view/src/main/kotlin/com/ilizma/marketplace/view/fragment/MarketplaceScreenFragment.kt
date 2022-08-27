@@ -15,10 +15,10 @@ import javax.inject.Inject
 class MarketplaceScreenFragment : Fragment(R.layout.marketplace_screen_fragment) {
 
     @Inject
-    internal lateinit var binder: MarketplaceScreenFragmentBinder
+    lateinit var binder: MarketplaceScreenFragmentBinder
 
     @Inject
-    internal lateinit var router: MarketplaceScreenRouter
+    lateinit var router: MarketplaceScreenRouter
 
     private val binding by viewBinding(MarketplaceScreenFragmentBinding::bind)
 

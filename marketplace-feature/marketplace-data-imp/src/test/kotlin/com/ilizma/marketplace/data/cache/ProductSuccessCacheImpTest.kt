@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 
-class ProductSuccessCacheImpTest {
+internal class ProductSuccessCacheImpTest {
 
     private lateinit var cache: ProductSuccessCache
 

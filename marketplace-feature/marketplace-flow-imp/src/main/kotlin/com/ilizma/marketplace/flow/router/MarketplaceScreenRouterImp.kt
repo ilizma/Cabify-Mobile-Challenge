@@ -3,6 +3,8 @@ package com.ilizma.marketplace.flow.router
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.OnBackPressedDispatcher
 import androidx.lifecycle.LifecycleOwner
+import com.ilizma.checkout.flow.navigator.CheckoutNavigator
+import com.ilizma.marketplace.flow.mapper.ArticlesArgsMapper
 import com.ilizma.marketplace.presentation.model.MarketplaceNavigationAction
 import com.ilizma.marketplace.presentation.viewmodel.MarketplaceViewModel
 import com.ilizma.marketplace.view.router.MarketplaceScreenRouter
@@ -11,7 +13,8 @@ class MarketplaceScreenRouterImp(
     private val lifecycleOwner: () -> LifecycleOwner,
     private val onBackPressedDispatcher: OnBackPressedDispatcher,
     viewModelLazy: Lazy<MarketplaceViewModel>,
-    //private val navigator: CheckoutNavigator,
+    private val navigator: CheckoutNavigator,
+    private val mapper: ArticlesArgsMapper,
 ) : MarketplaceScreenRouter {
 
     private val viewModel by viewModelLazy
@@ -32,7 +35,8 @@ class MarketplaceScreenRouterImp(
         action: MarketplaceNavigationAction,
     ) {
         when (action) {
-            MarketplaceNavigationAction.CHECKOUT -> {}// TODO:  checkoutNavigator.navigate( put args )
+            is MarketplaceNavigationAction.Checkout -> mapper.from(action.articlesCheckoutInfo)
+                .let { navigator.navigate(it) }
         }
     }
 

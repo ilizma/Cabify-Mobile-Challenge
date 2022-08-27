@@ -11,7 +11,7 @@ android {
     defaultConfig {
         minSdk = ConfigData.minSdkVersion
         targetSdk = ConfigData.targetSdk
-        testInstrumentationRunner = ConfigData.testInstrumentationRunner
+        testInstrumentationRunner = "com.ilizma.androidtest.runner.CustomTestRunner"
     }
 
     compileOptions {
@@ -26,6 +26,7 @@ android {
     sourceSets {
         getByName("main").java.srcDirs("src/main/kotlin")
         getByName("test").java.srcDirs("src/test/kotlin")
+        getByName("androidTest").java.srcDirs("src/androidTest/kotlin")
     }
 
     testOptions {
@@ -34,6 +35,10 @@ android {
         unitTests.all {
             it.useJUnitPlatform()
         }
+    }
+
+    packagingOptions {
+        resources.excludes.add("META-INF/*")
     }
 
 }
@@ -55,6 +60,24 @@ dependencies {
 
     // region UI
     implementation(UI.shimmer)
+    // endregion
+
+    // region Test
+    testImplementation(Test.mockk)
+    testImplementation(Test.junitApi)
+    testRuntimeOnly(Test.junitEngine)
+    testImplementation(project(":test-base"))
+    // endregion
+
+    // region AndroidTest
+    androidTestImplementation(Di.testing)
+    androidTestImplementation(AndroidTest.mockk)
+    androidTestImplementation(AndroidTest.runner)
+    androidTestImplementation(AndroidTest.fragmentScenario)
+    kaptAndroidTest(Di.compiler)
+    androidTestImplementation(project(":android-test-base"))
+    androidTestImplementation(project(":marketplace-di"))
+    androidTestImplementation(project(":marketplace-flow-imp"))
     // endregion
 
     // region AndroidKtx

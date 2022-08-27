@@ -61,6 +61,7 @@ object Network {
 object Di {
     val hilt by lazy { "com.google.dagger:hilt-android:${Versions.hiltVersion}" }
     val compiler by lazy { "com.google.dagger:hilt-android-compiler:${Versions.hiltVersion}" }
+    val testing by lazy { "com.google.dagger:hilt-android-testing:${Versions.hiltVersion}" }
 }
 
 object Annotation {
@@ -71,4 +72,10 @@ object Test {
     val mockk by lazy { "io.mockk:mockk:${Versions.mockkVersion}" }
     val junitApi by lazy { "org.junit.jupiter:junit-jupiter-api:${Versions.junitJupiterVersion}" }
     val junitEngine by lazy { "org.junit.jupiter:junit-jupiter-engine:${Versions.junitJupiterVersion}" }
+}
+
+object AndroidTest {
+    val mockk by lazy { "io.mockk:mockk-android:${Versions.mockkVersion}" }
+    val runner by lazy { "androidx.test:runner:${Versions.runnerVersion}" }
+    val fragmentScenario by lazy { "androidx.fragment:fragment-testing:${Versions.fragmentKtxVersion}" }
 }

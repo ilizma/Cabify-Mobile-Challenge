@@ -2,12 +2,17 @@ package com.ilizma.marketplace.presentation.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.ilizma.marketplace.domain.model.ArticlesCheckoutInfo
 import com.ilizma.marketplace.domain.model.ArticlesState
+import com.ilizma.marketplace.domain.usecase.GetArticlesCheckoutInfoUseCase
 import com.ilizma.marketplace.domain.usecase.GetArticlesStateUseCase
+import com.ilizma.marketplace.presentation.mapper.ArticlesCheckoutInfoMapper
 import com.ilizma.marketplace.presentation.mapper.ArticlesStateMapper
 import com.ilizma.marketplace.presentation.model.Article
+import com.ilizma.marketplace.presentation.model.CheckoutState
 import com.ilizma.marketplace.presentation.model.MarketplaceNavigationAction
-import com.ilizma.marketplace.presentation.model.MarketplaceNavigationAction.CHECKOUT
+import com.ilizma.marketplace.presentation.model.MarketplaceNavigationAction.Checkout
+import com.ilizma.marketplace.presentation.viewmodel.factory.CHECKOUT_STATE_ASSISTED
 import com.ilizma.marketplace.presentation.viewmodel.factory.ERROR_ASSISTED
 import com.ilizma.presentation.SingleLiveEvent
 import dagger.assisted.Assisted
@@ -18,17 +23,21 @@ import io.reactivex.rxjava3.kotlin.addTo
 import com.ilizma.marketplace.presentation.model.ArticlesState as PresentationArticlesState
 
 class MarketplaceViewModelImp @AssistedInject constructor(
-    private val useCase: GetArticlesStateUseCase,
-    @Assisted private val mapper: ArticlesStateMapper,
+    private val getArticlesStateUseCase: GetArticlesStateUseCase,
+    private val getArticlesCheckoutInfoUseCase: GetArticlesCheckoutInfoUseCase,
+    @Assisted private val articlesStateMapper: ArticlesStateMapper,
+    @Assisted private val articlesCheckoutInfoMapper: ArticlesCheckoutInfoMapper,
     @Assisted private val backgroundScheduler: Scheduler,
     @Assisted private val compositeDisposable: CompositeDisposable,
     @Assisted private val _state: MutableLiveData<PresentationArticlesState>,
     @Assisted(ERROR_ASSISTED) private val _error: MutableLiveData<String>,
+    @Assisted(CHECKOUT_STATE_ASSISTED) private val _checkoutState: MutableLiveData<CheckoutState>,
     @Assisted private val _navigationAction: SingleLiveEvent<MarketplaceNavigationAction>,
 ) : MarketplaceViewModel() {
 
     override val state: LiveData<PresentationArticlesState> = _state
     override val error: LiveData<String> = _error
+    override val checkoutState: LiveData<CheckoutState> = _checkoutState
     override val navigationAction: LiveData<MarketplaceNavigationAction> = _navigationAction
 
     init {
@@ -40,20 +49,20 @@ class MarketplaceViewModelImp @AssistedInject constructor(
             .let { PresentationArticlesState.Loading(it) }
             .let { _state.postValue(it) }
 
-        useCase()
+        getArticlesStateUseCase()
             .subscribeOn(backgroundScheduler)
             .observeOn(backgroundScheduler)
             .subscribe(::onArticlesState) { throw it }
             .addTo(compositeDisposable)
     }
 
-
-    override fun onItemSelected(article: Article.Success) {
-        // TODO:
-    }
-
     override fun onCheckout() {
-        _navigationAction.postValue(CHECKOUT)
+        _checkoutState.postValue(CheckoutState.LOADING)
+        getArticlesCheckoutInfoUseCase()
+            .subscribeOn(backgroundScheduler)
+            .observeOn(backgroundScheduler)
+            .subscribe(::onArticlesCheckoutInfo) { throw it }
+            .addTo(compositeDisposable)
     }
 
     private fun onArticlesState(
@@ -61,9 +70,18 @@ class MarketplaceViewModelImp @AssistedInject constructor(
     ) {
         when (state) {
             is ArticlesState.RemoteError -> _error.postValue(state.message)
-            is ArticlesState.Success -> mapper.from(state)
+            is ArticlesState.Success -> articlesStateMapper.from(state)
                 .let { _state.postValue(it) }
         }
+    }
+
+    private fun onArticlesCheckoutInfo(
+        articlesCheckoutInfo: ArticlesCheckoutInfo,
+    ) {
+        articlesCheckoutInfoMapper.from(articlesCheckoutInfo)
+            .let { Checkout(it) }
+            .also { _checkoutState.postValue(CheckoutState.NONE) }
+            .let { _navigationAction.postValue(it) }
     }
 
     private fun generateLoadingList(

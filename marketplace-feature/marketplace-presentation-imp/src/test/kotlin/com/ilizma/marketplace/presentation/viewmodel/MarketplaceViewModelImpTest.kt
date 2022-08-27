@@ -1,10 +1,13 @@
 package com.ilizma.marketplace.presentation.viewmodel
 
 import androidx.lifecycle.MutableLiveData
+import com.ilizma.marketplace.domain.model.ArticlesCheckoutInfo
 import com.ilizma.marketplace.domain.model.ArticlesState
+import com.ilizma.marketplace.domain.usecase.GetArticlesCheckoutInfoUseCase
 import com.ilizma.marketplace.domain.usecase.GetArticlesStateUseCase
+import com.ilizma.marketplace.presentation.mapper.ArticlesCheckoutInfoMapper
 import com.ilizma.marketplace.presentation.mapper.ArticlesStateMapper
-import com.ilizma.marketplace.presentation.model.Article
+import com.ilizma.marketplace.presentation.model.CheckoutState
 import com.ilizma.marketplace.presentation.model.MarketplaceNavigationAction
 import com.ilizma.presentation.SingleLiveEvent
 import com.ilizma.test.executor.InstantExecutorExtension
@@ -16,19 +19,27 @@ import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
+import com.ilizma.marketplace.presentation.model.ArticlesCheckoutInfo as PresentationArticlesCheckoutInfo
 import com.ilizma.marketplace.presentation.model.ArticlesState as PresentationArticlesState
 
 @ExtendWith(InstantExecutorExtension::class)
 internal class MarketplaceViewModelImpTest {
 
     @RelaxedMockK
-    private lateinit var useCase: GetArticlesStateUseCase
+    private lateinit var getArticlesStateUseCase: GetArticlesStateUseCase
 
     @RelaxedMockK
-    private lateinit var mapper: ArticlesStateMapper
+    private lateinit var getArticlesCheckoutInfoUseCase: GetArticlesCheckoutInfoUseCase
+
+    @RelaxedMockK
+    private lateinit var articlesStateMapper: ArticlesStateMapper
+
+    @RelaxedMockK
+    private lateinit var articlesCheckoutInfoMapper: ArticlesCheckoutInfoMapper
 
     @RelaxedMockK
     private lateinit var compositeDisposable: CompositeDisposable
@@ -41,12 +52,15 @@ internal class MarketplaceViewModelImpTest {
 
     private fun initViewModel() {
         viewModel = MarketplaceViewModelImp(
-            useCase = useCase,
-            mapper = mapper,
+            getArticlesStateUseCase = getArticlesStateUseCase,
+            getArticlesCheckoutInfoUseCase = getArticlesCheckoutInfoUseCase,
+            articlesStateMapper = articlesStateMapper,
+            articlesCheckoutInfoMapper = articlesCheckoutInfoMapper,
             backgroundScheduler = Schedulers.trampoline(),
             compositeDisposable = compositeDisposable,
             _state = MutableLiveData(),
             _error = MutableLiveData(),
+            _checkoutState = MutableLiveData(),
             _navigationAction = SingleLiveEvent(),
         )
     }
@@ -54,54 +68,110 @@ internal class MarketplaceViewModelImpTest {
     @Nested
     inner class Init {
 
-        @Test
-        fun `given Success ArticlesState, when viewModel is initialized, then the state liveData value should be the expected Success`() {
-            // given
-            val state = mockk<ArticlesState.Success>()
-            val expected = mockk<PresentationArticlesState.Success>()
-            every { useCase() } returns Single.just(state)
-            every { mapper.from(state) } returns expected
+        @Nested
+        inner class Loading {
 
-            // when
-            initViewModel()
+            @Test
+            fun `when viewModel is initialized, then the state liveData value should be the expected Loading`() {
+                // when
+                initViewModel()
 
-            // then
-            assertEquals(expected, viewModel.state.value)
+                // then
+                assertTrue(viewModel.state.value is PresentationArticlesState.Loading)
+            }
         }
 
-        @Test
-        fun `given RemoteError ArticlesState, when viewModel is initialized, then the error liveData value should be the expected errorMessage`() {
-            // given
-            val expected = "errorMessage"
-            val state = mockk<ArticlesState.RemoteError>()
-            every { useCase() } returns Single.just(state)
-            every { state.message } returns expected
+        @Nested
+        inner class GetArticlesStateUseCase {
 
-            // when
-            initViewModel()
+            @Test
+            fun `given Success ArticlesState, when viewModel is initialized, then the state liveData value should be the expected Success`() {
+                // given
+                val state = mockk<ArticlesState.Success>()
+                val expected = mockk<PresentationArticlesState.Success>()
+                every { getArticlesStateUseCase() } returns Single.just(state)
+                every { articlesStateMapper.from(state) } returns expected
 
-            // then
-            assertEquals(expected, viewModel.error.value)
+                // when
+                initViewModel()
+
+                // then
+                assertEquals(expected, viewModel.state.value)
+            }
+
+            @Test
+            fun `given RemoteError ArticlesState, when viewModel is initialized, then the error liveData value should be the expected errorMessage`() {
+                // given
+                val expected = "errorMessage"
+                val state = mockk<ArticlesState.RemoteError>()
+                every { getArticlesStateUseCase() } returns Single.just(state)
+                every { state.message } returns expected
+
+                // when
+                initViewModel()
+
+                // then
+                assertEquals(expected, viewModel.error.value)
+            }
+
         }
 
     }
 
     @Nested
-    inner class OnItemSelected {
+    inner class GetState {
 
-        // TODO:
-        @Test
-        fun `when onItemSelected, then `() {
-            // given
-            val article = mockk<Article.Success>()
-            //val expected = MarketplaceNavigationAction.CHECKOUT
-            initViewModel()
+        @Nested
+        inner class Loading {
 
-            // when
-            viewModel.onItemSelected(article)
+            @Test
+            fun `when viewModel is initialized, then the state liveData value should be the expected Loading`() {
+                // given
+                initViewModel()
 
-            // then
-            //assertEquals(expected, viewModel.navigationAction.value)
+                // when
+                viewModel.getState()
+
+                // then
+                assertTrue(viewModel.state.value is PresentationArticlesState.Loading)
+            }
+        }
+
+        @Nested
+        inner class GetArticlesStateUseCase {
+
+            @Test
+            fun `given Success ArticlesState, when viewModel is initialized, then the state liveData value should be the expected Success`() {
+                // given
+                val state = mockk<ArticlesState.Success>()
+                val expected = mockk<PresentationArticlesState.Success>()
+                every { getArticlesStateUseCase() } returns Single.just(state)
+                every { articlesStateMapper.from(state) } returns expected
+                initViewModel()
+
+                // when
+                viewModel.getState()
+
+                // then
+                assertEquals(expected, viewModel.state.value)
+            }
+
+            @Test
+            fun `given RemoteError ArticlesState, when viewModel is initialized, then the error liveData value should be the expected errorMessage`() {
+                // given
+                val expected = "errorMessage"
+                val state = mockk<ArticlesState.RemoteError>()
+                every { getArticlesStateUseCase() } returns Single.just(state)
+                every { state.message } returns expected
+                initViewModel()
+
+                // when
+                viewModel.getState()
+
+                // then
+                assertEquals(expected, viewModel.error.value)
+            }
+
         }
 
     }
@@ -112,13 +182,19 @@ internal class MarketplaceViewModelImpTest {
         @Test
         fun `when onCheckout, then the navigationAction liveData value should be the expected CHECKOUT MarketplaceNavigationAction`() {
             // given
-            val expected = MarketplaceNavigationAction.CHECKOUT
+            val articlesCheckoutInfo = mockk<ArticlesCheckoutInfo>()
+            val presentationArticlesCheckoutInfo = mockk<PresentationArticlesCheckoutInfo>()
+            val expectedCheckoutState = CheckoutState.NONE
+            val expected = MarketplaceNavigationAction.Checkout(presentationArticlesCheckoutInfo)
+            every { getArticlesCheckoutInfoUseCase() } returns Single.just(articlesCheckoutInfo)
+            every { articlesCheckoutInfoMapper.from(articlesCheckoutInfo) } returns presentationArticlesCheckoutInfo
             initViewModel()
 
             // when
             viewModel.onCheckout()
 
             // then
+            assertEquals(expectedCheckoutState, viewModel.checkoutState.value)
             assertEquals(expected, viewModel.navigationAction.value)
         }
 

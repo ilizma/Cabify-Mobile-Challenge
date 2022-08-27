@@ -36,13 +36,13 @@ internal class ArticlesStateMapperTest {
             // given
             val product = mockk<Product>()
             val state = ProductsState.Success(list = listOf(product, product))
-            val discounts = Discounts(list = listOf(mockk()))
+            val discountDescriptions = DiscountDescriptions(list = listOf(mockk()))
             val article = mockk<Article>()
             val expected = ArticlesState.Success(list = listOf(article, article))
-            every { articleMapper.from(product, discounts) } returns article
+            every { articleMapper.from(product, discountDescriptions) } returns article
 
             // when
-            val result = mapper.from(state, discounts)
+            val result = mapper.from(state, discountDescriptions)
 
             // then
             assertEquals(expected, result)
@@ -53,11 +53,11 @@ internal class ArticlesStateMapperTest {
             // given
             val errorMessage = "errorMessage"
             val state = ProductsState.RemoteError(errorMessage)
-            val discounts = Discounts(list = listOf(mockk()))
+            val discountDescriptions = DiscountDescriptions(list = listOf(mockk()))
             val expected = ArticlesState.RemoteError(errorMessage)
 
             // when
-            val result = mapper.from(state, discounts)
+            val result = mapper.from(state, discountDescriptions)
 
             // then
             assertEquals(expected, result)

@@ -8,7 +8,6 @@ import com.ilizma.view.extensions.setOnReactiveClickListener
 
 class ArticleItemBinderImp(
     private val viewModel: ArticleViewModel,
-    private val onClicked: (Article.Success) -> Unit,
     private val lifecycleOwner: () -> LifecycleOwner,
 ) : ArticleItemBinder<Article.Success> {
 
@@ -22,7 +21,8 @@ class ArticleItemBinderImp(
     }
 
     override fun unBind() {
-        binding.articleItemClContent.setOnReactiveClickListener { /* Do nothing */ }
+        binding.articleItemTvPlus.setOnReactiveClickListener { /* Do nothing */ }
+        binding.articleItemTvMinus.setOnReactiveClickListener { /* Do nothing */ }
     }
 
     private fun setupObservers() {
@@ -43,7 +43,6 @@ class ArticleItemBinderImp(
             is Article.Success.Mug -> ""
         }.let { binding.articleItemTvDescription.text = it }
         binding.articleItemTvPrice.text = article.price
-        binding.articleItemClContent.setOnReactiveClickListener { onClicked(article) }
         binding.articleItemTvPlus.setOnReactiveClickListener { viewModel.onPlus(article) }
         binding.articleItemTvMinus.setOnReactiveClickListener { viewModel.onMinus(article) }
     }

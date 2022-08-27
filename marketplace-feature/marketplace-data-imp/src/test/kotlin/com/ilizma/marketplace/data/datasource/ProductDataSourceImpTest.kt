@@ -38,10 +38,10 @@ internal class ProductDataSourceImpTest {
     }
 
     @Nested
-    inner class GetProducts {
+    inner class GetProductsState {
 
         @Test
-        fun `given Result ProductsDTO, when getProducts, then result should be the expected ProductsState`() {
+        fun `given Result ProductsDTO, when getProductsState, then result should be the expected ProductsState`() {
             // given
             val result = mockk<Result<ProductsDTO>>()
             val expected = mockk<ProductsState>()

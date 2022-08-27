@@ -15,7 +15,7 @@ class GetArticlesStateUseCaseImp(
     override fun invoke(
     ): Single<ArticlesState> = Single.zip(
         productRepository.getProductsState(),
-        discountRepository.getDiscounts(),
+        discountRepository.getDiscountsDescriptions(),
     ) { products, discounts ->
         mapper.from(products, discounts)
     }
