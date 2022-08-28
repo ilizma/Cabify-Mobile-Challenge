@@ -47,8 +47,9 @@ dependencies {
 
     // region Checkout
     implementation(project(":checkout-flow"))
-    /*implementation(project(":checkout-view"))
-    implementation(project(":checkout-presentation"))*/
+    implementation(project(":checkout-view"))
+    implementation(project(":checkout-presentation"))
+    implementation(project(":checkout-data"))
     // endregion
 
 }

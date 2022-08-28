@@ -42,4 +42,8 @@ dependencies {
     implementation(AndroidUI.material)
     // endregion
 
+    // region Base
+    implementation(project(":view-base"))
+    // endregion
+
 }

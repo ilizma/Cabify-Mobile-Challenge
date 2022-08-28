@@ -9,7 +9,8 @@ class DiscountDataListMapper(
 
     fun from(
         dataList: DataDiscountDataList,
-    ): DiscountDataList = dataList.list.map { mapper.from(it) }
+    ): DiscountDataList = dataList.list
+        .map { mapper.from(it) }
         .let { DiscountDataList(it) }
 
 }

@@ -26,7 +26,8 @@ class ProductsStateMapper(
         state: DataProductsState,
     ): ProductsState = when (state) {
         is DataProductsState.RemoteError -> ProductsState.RemoteError(state.message)
-        is DataProductsState.Success -> state.list.map { mapper.from(it) }
+        is DataProductsState.Success -> state.list
+            .map { mapper.from(it) }
             .let { ProductsState.Success(it) }
     }
 

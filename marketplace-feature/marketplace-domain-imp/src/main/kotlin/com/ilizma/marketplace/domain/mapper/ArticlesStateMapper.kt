@@ -13,7 +13,8 @@ class ArticlesStateMapper(
         discountDescriptions: DiscountDescriptions,
     ): ArticlesState = when (state) {
         is ProductsState.RemoteError -> ArticlesState.RemoteError(state.message)
-        is ProductsState.Success -> state.list.map { mapper.from(it, discountDescriptions) }
+        is ProductsState.Success -> state.list
+            .map { mapper.from(it, discountDescriptions) }
             .let { ArticlesState.Success(it) }
     }
 

@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.ilizma.checkout.flow.navigator.CheckoutNavigator
 import com.ilizma.marketplace.flow.mapper.ArticleArgsMapper
 import com.ilizma.marketplace.flow.mapper.ArticlesArgsMapper
+import com.ilizma.marketplace.flow.navigator.BackNavigator
 import com.ilizma.marketplace.flow.router.MarketplaceScreenRouterImp
 import com.ilizma.marketplace.presentation.viewmodel.factory.di.MARKETPLACE_VIEW_MODEL_PROVIDER_NAMED
 import com.ilizma.marketplace.view.router.MarketplaceScreenRouter
@@ -22,13 +23,15 @@ object MarketplaceScreenRouterModule {
     @Provides
     fun provideMarketplaceScreenRouter(
         fragment: Fragment,
-        navigator: CheckoutNavigator,
+        checkoutNavigator: CheckoutNavigator,
+        backNavigator: BackNavigator,
         @Named(MARKETPLACE_VIEW_MODEL_PROVIDER_NAMED) viewModelProviderFactory: ViewModelProvider.Factory,
     ): MarketplaceScreenRouter = MarketplaceScreenRouterImp(
         lifecycleOwner = { fragment.viewLifecycleOwner },
         onBackPressedDispatcher = fragment.requireActivity().onBackPressedDispatcher,
         viewModelLazy = fragment.viewModels { viewModelProviderFactory },
-        navigator = navigator,
+        checkoutNavigator = checkoutNavigator,
+        backNavigator = backNavigator,
         mapper = ArticlesArgsMapper(
             mapper = ArticleArgsMapper(),
         ),

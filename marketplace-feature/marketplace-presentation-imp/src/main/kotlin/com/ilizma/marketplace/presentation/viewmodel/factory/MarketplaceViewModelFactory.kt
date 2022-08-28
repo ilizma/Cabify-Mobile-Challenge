@@ -19,8 +19,12 @@ class MarketplaceViewModelFactory(
     override fun <T : ViewModel> create(
         modelClass: Class<T>,
     ): T = viewModelAssistedFactory.create(
-        articlesStateMapper = ArticlesStateMapper(ArticleMapper()),
-        articlesCheckoutInfoMapper = ArticlesCheckoutInfoMapper(ArticleCheckoutInfoMapper()),
+        articlesStateMapper = ArticlesStateMapper(
+            mapper = ArticleMapper()
+        ),
+        articlesCheckoutInfoMapper = ArticlesCheckoutInfoMapper(
+            mapper = ArticleCheckoutInfoMapper()
+        ),
         backgroundScheduler = Schedulers.io(),
         compositeDisposable = CompositeDisposable(),
         _state = MutableLiveData(),

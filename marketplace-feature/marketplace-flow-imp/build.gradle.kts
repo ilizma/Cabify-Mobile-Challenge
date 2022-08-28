@@ -46,6 +46,7 @@ dependencies {
     // endregion
 
     // region Marketplace
+    implementation(project(":marketplace-flow"))
     implementation(project(":marketplace-view"))
     implementation(project(":marketplace-presentation"))
     // endregion

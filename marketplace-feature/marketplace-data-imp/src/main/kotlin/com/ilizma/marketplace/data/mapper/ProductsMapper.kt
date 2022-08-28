@@ -9,6 +9,7 @@ class ProductsMapper(
 
     fun from(
         state: DataProductsState.Success,
-    ): List<Product> = state.list.map { mapper.from(it) }
+    ): List<Product> = state.list
+        .map { mapper.from(it) }
 
 }

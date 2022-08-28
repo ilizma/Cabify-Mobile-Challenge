@@ -11,6 +11,7 @@ import com.ilizma.marketplace.presentation.mapper.ArticlesStateMapper
 import com.ilizma.marketplace.presentation.model.Article
 import com.ilizma.marketplace.presentation.model.CheckoutState
 import com.ilizma.marketplace.presentation.model.MarketplaceNavigationAction
+import com.ilizma.marketplace.presentation.model.MarketplaceNavigationAction.Back
 import com.ilizma.marketplace.presentation.model.MarketplaceNavigationAction.Checkout
 import com.ilizma.marketplace.presentation.viewmodel.factory.CHECKOUT_STATE_ASSISTED
 import com.ilizma.marketplace.presentation.viewmodel.factory.ERROR_ASSISTED
@@ -63,6 +64,10 @@ class MarketplaceViewModelImp @AssistedInject constructor(
             .observeOn(backgroundScheduler)
             .subscribe(::onArticlesCheckoutInfo) { throw it }
             .addTo(compositeDisposable)
+    }
+
+    override fun onBack() {
+        _navigationAction.postValue(Back)
     }
 
     private fun onArticlesState(

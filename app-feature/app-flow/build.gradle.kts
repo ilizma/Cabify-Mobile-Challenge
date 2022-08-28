@@ -55,4 +55,9 @@ dependencies {
     implementation(project(":marketplace-view"))
     // endregion
 
+    // region Checkout
+    implementation(project(":checkout-flow"))
+    implementation(project(":checkout-view"))
+    // endregion
+
 }

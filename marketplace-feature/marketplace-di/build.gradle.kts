@@ -66,6 +66,7 @@ dependencies {
     // endregion
 
     // region Marketplace
+    api(project(":marketplace-flow"))
     api(project(":marketplace-flow-imp"))
     api(project(":marketplace-view"))
     api(project(":marketplace-view-imp"))

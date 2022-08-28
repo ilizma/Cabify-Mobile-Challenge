@@ -6,4 +6,6 @@ sealed class MarketplaceNavigationAction {
         val articlesCheckoutInfo: ArticlesCheckoutInfo,
     ) : MarketplaceNavigationAction()
 
+    object Back : MarketplaceNavigationAction()
+
 }

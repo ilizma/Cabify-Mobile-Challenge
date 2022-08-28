@@ -1,6 +1,5 @@
 package com.ilizma.marketplace.view.bind.di
 
-import android.content.Context
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
@@ -13,7 +12,6 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.FragmentComponent
-import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Named
 
 @Module
@@ -22,7 +20,6 @@ object MarketplaceScreenFragmentBinderModule {
 
     @Provides
     fun provideMarketplaceScreenFragmentBinder(
-        @ApplicationContext context: Context,
         fragment: Fragment,
         adapterFactory: ArticlesAdapterFactory<Article>,
         @Named(MARKETPLACE_VIEW_MODEL_PROVIDER_NAMED) viewModelProviderFactory: ViewModelProvider.Factory,

@@ -11,7 +11,8 @@ class DiscountDescriptionsMapper(
     fun from(
         descriptions: DataDiscountDescriptions,
         dataList: DiscountDataList,
-    ): DiscountDescriptions = descriptions.list.map { mapper.from(it, dataList) }
+    ): DiscountDescriptions = descriptions.list
+        .map { mapper.from(it, dataList) }
         .let { DiscountDescriptions(it) }
 
 }

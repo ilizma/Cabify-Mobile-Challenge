@@ -21,4 +21,6 @@ abstract class MarketplaceViewModel : ViewModel() {
 
     abstract fun onCheckout()
 
+    abstract fun onBack()
+
 }

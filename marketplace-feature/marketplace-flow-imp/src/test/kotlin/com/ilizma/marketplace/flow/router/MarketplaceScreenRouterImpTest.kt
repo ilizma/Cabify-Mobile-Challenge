@@ -5,6 +5,7 @@ import androidx.lifecycle.LifecycleOwner
 import com.ilizma.checkout.flow.model.ArticlesArgs
 import com.ilizma.checkout.flow.navigator.CheckoutNavigator
 import com.ilizma.marketplace.flow.mapper.ArticlesArgsMapper
+import com.ilizma.marketplace.flow.navigator.BackNavigator
 import com.ilizma.marketplace.presentation.model.ArticlesCheckoutInfo
 import com.ilizma.marketplace.presentation.model.MarketplaceNavigationAction
 import com.ilizma.marketplace.presentation.viewmodel.MarketplaceViewModel
@@ -34,7 +35,10 @@ internal class MarketplaceScreenRouterImpTest {
     private lateinit var viewModelLazy: Lazy<MarketplaceViewModel>
 
     @RelaxedMockK
-    private lateinit var navigator: CheckoutNavigator
+    private lateinit var checkoutNavigator: CheckoutNavigator
+
+    @RelaxedMockK
+    private lateinit var backNavigator: BackNavigator
 
     @RelaxedMockK
     private lateinit var mapper: ArticlesArgsMapper
@@ -52,7 +56,8 @@ internal class MarketplaceScreenRouterImpTest {
             lifecycleOwner = { lifecycleOwner },
             onBackPressedDispatcher = onBackPressedDispatcher,
             viewModelLazy = viewModelLazy,
-            navigator = navigator,
+            checkoutNavigator = checkoutNavigator,
+            backNavigator = backNavigator,
             mapper = mapper,
         )
     }
@@ -73,7 +78,7 @@ internal class MarketplaceScreenRouterImpTest {
         inner class NavigationAction {
 
             @Test
-            fun `given a Checkout GameScreenNavigationAction, when liveData navigationAction is updated, then navigateFromGame is called`() {
+            fun `given a Checkout MarketplaceNavigationAction, when liveData navigationAction is updated, then checkoutNavigator navigate is called`() {
                 // given
                 val navigationAction = mockk<MarketplaceNavigationAction.Checkout>()
                 val articlesCheckoutInfo = mockk<ArticlesCheckoutInfo>()
@@ -88,7 +93,22 @@ internal class MarketplaceScreenRouterImpTest {
                 navigationActions.onChanged(navigationAction)
 
                 // then
-                verify { navigator.navigate(articlesArgs) }
+                verify { checkoutNavigator.navigate(articlesArgs) }
+            }
+
+            @Test
+            fun `given a Back MarketplaceNavigationAction, when liveData navigationAction is updated, then backNavigator navigate is called`() {
+                // given
+                val navigationAction = MarketplaceNavigationAction.Back
+                val navigationActions = TestMutableLiveData<MarketplaceNavigationAction>()
+                every { viewModel.navigationAction } returns navigationActions
+
+                // when
+                router.init()
+                navigationActions.onChanged(navigationAction)
+
+                // then
+                verify { backNavigator.navigate() }
             }
 
         }
