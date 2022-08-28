@@ -4,7 +4,7 @@ import com.ilizma.marketplace.view.databinding.ArticleItemBinding
 
 interface ArticleItemBinder<T> {
 
-    fun bind(position: Int, binding: ArticleItemBinding, article: T)
+    fun bind(binding: ArticleItemBinding, article: T)
 
     fun unBind()
 

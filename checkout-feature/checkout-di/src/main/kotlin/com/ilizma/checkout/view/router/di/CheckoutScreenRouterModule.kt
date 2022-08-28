@@ -1,4 +1,4 @@
-package com.ilizma.checkout.flow.router.di
+package com.ilizma.checkout.view.router.di
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels

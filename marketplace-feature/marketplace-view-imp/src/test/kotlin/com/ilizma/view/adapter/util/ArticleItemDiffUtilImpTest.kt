@@ -1,6 +1,7 @@
-package com.ilizma.marketplace.view.adapter.util
+package com.ilizma.view.adapter.util
 
 import com.ilizma.marketplace.presentation.model.Article
+import com.ilizma.marketplace.view.adapter.util.ArticleItemDiffUtilImp
 import io.mockk.MockKAnnotations
 import io.mockk.every
 import io.mockk.mockk
@@ -11,7 +12,7 @@ import org.junit.jupiter.api.Test
 
 internal class ArticleItemDiffUtilImpTest {
 
-    private lateinit var articleItemDiffUtil: ArticleItemDiffUtil<Article>
+    private lateinit var itemDiffUtil: ItemDiffUtil<Article>
 
     init {
         MockKAnnotations.init(this)
@@ -19,7 +20,7 @@ internal class ArticleItemDiffUtilImpTest {
 
     @BeforeEach
     private fun setup() {
-        articleItemDiffUtil = ArticleItemDiffUtilImp()
+        itemDiffUtil = ArticleItemDiffUtilImp()
     }
 
     @Nested
@@ -33,7 +34,7 @@ internal class ArticleItemDiffUtilImpTest {
             val expected = true
 
             // when
-            val result = articleItemDiffUtil.areItemsTheSame(
+            val result = itemDiffUtil.areItemsTheSame(
                 oldItem,
                 newItem,
             )
@@ -53,7 +54,7 @@ internal class ArticleItemDiffUtilImpTest {
             every { newItem.name } returns name
 
             // when
-            val result = articleItemDiffUtil.areItemsTheSame(
+            val result = itemDiffUtil.areItemsTheSame(
                 oldItem,
                 newItem,
             )
@@ -70,7 +71,7 @@ internal class ArticleItemDiffUtilImpTest {
             val expected = false
 
             // when
-            val result = articleItemDiffUtil.areItemsTheSame(
+            val result = itemDiffUtil.areItemsTheSame(
                 oldItem,
                 newItem,
             )
@@ -87,7 +88,7 @@ internal class ArticleItemDiffUtilImpTest {
             val expected = false
 
             // when
-            val result = articleItemDiffUtil.areItemsTheSame(
+            val result = itemDiffUtil.areItemsTheSame(
                 oldItem,
                 newItem,
             )
@@ -108,7 +109,7 @@ internal class ArticleItemDiffUtilImpTest {
             every { newItem.name } returns otherName
 
             // when
-            val result = articleItemDiffUtil.areItemsTheSame(
+            val result = itemDiffUtil.areItemsTheSame(
                 oldItem,
                 newItem,
             )
@@ -129,7 +130,7 @@ internal class ArticleItemDiffUtilImpTest {
             val expected = true
 
             // when
-            val result = articleItemDiffUtil.areContentsTheSame(
+            val result = itemDiffUtil.areContentsTheSame(
                 item,
                 item,
             )
@@ -146,7 +147,7 @@ internal class ArticleItemDiffUtilImpTest {
             val expected = false
 
             // when
-            val result = articleItemDiffUtil.areContentsTheSame(
+            val result = itemDiffUtil.areContentsTheSame(
                 oldItem,
                 newItem,
             )

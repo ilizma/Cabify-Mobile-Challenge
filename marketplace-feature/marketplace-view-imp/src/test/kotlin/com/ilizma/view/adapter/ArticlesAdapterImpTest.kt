@@ -1,12 +1,13 @@
-package com.ilizma.marketplace.view.adapter
+package com.ilizma.view.adapter
 
 import android.view.ViewGroup
 import com.ilizma.marketplace.presentation.model.Article
-import com.ilizma.marketplace.view.adapter.util.ArticleItemDiffUtil
+import com.ilizma.marketplace.view.adapter.ArticlesAdapterImp
+import com.ilizma.view.adapter.util.ItemDiffUtil
 import com.ilizma.marketplace.view.bind.factory.ArticleBinderFactory
 import com.ilizma.marketplace.view.mapper.ArticleTypeMapper
 import com.ilizma.marketplace.view.model.ArticleType
-import com.ilizma.marketplace.view.viewholder.ArticleViewHolder
+import com.ilizma.view.viewholder.ViewHolder
 import com.ilizma.marketplace.view.viewholder.factory.ArticleViewHolderFactory
 import io.mockk.MockKAnnotations
 import io.mockk.every
@@ -23,7 +24,7 @@ internal class ArticlesAdapterImpTest {
     private lateinit var binderFactory: ArticleBinderFactory
 
     @RelaxedMockK
-    private lateinit var liveChannelItemDiffUtil: ArticleItemDiffUtil<Article>
+    private lateinit var itemDiffUtil: ItemDiffUtil<Article>
 
     @RelaxedMockK
     private lateinit var viewHolderFactory: ArticleViewHolderFactory
@@ -31,7 +32,7 @@ internal class ArticlesAdapterImpTest {
     @RelaxedMockK
     private lateinit var mapper: ArticleTypeMapper
 
-    private lateinit var articlesAdapter: ArticlesAdapter<Article>
+    private lateinit var adapter: Adapter<Article>
 
     init {
         MockKAnnotations.init(this)
@@ -39,9 +40,9 @@ internal class ArticlesAdapterImpTest {
 
     @BeforeEach
     private fun setup() {
-        articlesAdapter = ArticlesAdapterImp(
+        adapter = ArticlesAdapterImp(
             binderFactory = binderFactory,
-            liveChannelItemDiffUtil = liveChannelItemDiffUtil,
+            liveChannelItemDiffUtil = itemDiffUtil,
             viewHolderFactory = viewHolderFactory,
             mapper = mapper,
         )
@@ -55,7 +56,7 @@ internal class ArticlesAdapterImpTest {
             // given
             val parent = mockk<ViewGroup>()
             val viewType = mockk<ArticleType>()
-            val expected = mockk<ArticleViewHolder<Article>>()
+            val expected = mockk<ViewHolder<Article>>()
             every { viewType.ordinal } returns 0
             every { mapper.from(viewType.ordinal) } returns viewType
             every {
@@ -67,7 +68,7 @@ internal class ArticlesAdapterImpTest {
             } returns expected
 
             // when
-            val result = articlesAdapter.onCreateViewHolder(
+            val result = adapter.onCreateViewHolder(
                 parent,
                 viewType.ordinal,
             )

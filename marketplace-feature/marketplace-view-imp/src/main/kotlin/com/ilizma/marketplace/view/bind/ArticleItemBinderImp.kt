@@ -13,7 +13,7 @@ class ArticleItemBinderImp(
 
     private lateinit var binding: ArticleItemBinding
 
-    override fun bind(position: Int, binding: ArticleItemBinding, article: Article.Success) {
+    override fun bind(binding: ArticleItemBinding, article: Article.Success) {
         this.binding = binding
         viewModel.getArticleQuantity(article)
         setupObservers()

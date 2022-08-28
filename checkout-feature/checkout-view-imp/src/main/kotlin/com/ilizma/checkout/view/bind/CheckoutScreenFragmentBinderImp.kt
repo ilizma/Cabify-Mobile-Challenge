@@ -1,26 +1,31 @@
 package com.ilizma.checkout.view.bind
 
 import androidx.lifecycle.LifecycleOwner
+import com.ilizma.checkout.presentation.model.CheckoutInfo
 import com.ilizma.checkout.presentation.model.CheckoutInfoList
 import com.ilizma.checkout.presentation.viewmodel.CheckoutViewModel
 import com.ilizma.checkout.view.databinding.CheckoutScreenFragmentBinding
+import com.ilizma.view.adapter.Adapter
+import com.ilizma.view.adapter.factory.AdapterFactory
 
 class CheckoutScreenFragmentBinderImp(
     viewModelLazy: Lazy<CheckoutViewModel>,
+    adapterFactory: AdapterFactory<CheckoutInfo>,
     private val lifecycleOwner: () -> LifecycleOwner,
 ) : CheckoutScreenFragmentBinder {
 
     private val viewModel by viewModelLazy
+    private val adapter: Adapter<CheckoutInfo> by lazy { adapterFactory.create() }
     private lateinit var binding: CheckoutScreenFragmentBinding
 
     override fun bind(binding: CheckoutScreenFragmentBinding) {
         this.binding = binding
-        setListeners()
+        setupAdapter()
         setupObservers()
     }
 
-    private fun setListeners() {
-
+    private fun setupAdapter() {
+        binding.checkoutScreenRv.adapter = adapter
     }
 
     private fun setupObservers() {
@@ -31,9 +36,9 @@ class CheckoutScreenFragmentBinderImp(
     }
 
     private fun onCheckoutInfoList(
-        list: CheckoutInfoList,
+        checkoutInfoList: CheckoutInfoList,
     ) {
-        // TODO: add RV
+        adapter.submitList(checkoutInfoList.list)
     }
 
 }

@@ -2,35 +2,36 @@ package com.ilizma.marketplace.view.adapter
 
 import android.view.ViewGroup
 import com.ilizma.marketplace.presentation.model.Article
-import com.ilizma.marketplace.view.adapter.util.ArticleItemDiffUtil
 import com.ilizma.marketplace.view.bind.factory.ArticleBinderFactory
 import com.ilizma.marketplace.view.mapper.ArticleTypeMapper
 import com.ilizma.marketplace.view.model.ArticleType.TYPE_ITEM
 import com.ilizma.marketplace.view.model.ArticleType.TYPE_LOADING
-import com.ilizma.marketplace.view.viewholder.ArticleViewHolder
 import com.ilizma.marketplace.view.viewholder.factory.ArticleViewHolderFactory
+import com.ilizma.view.adapter.Adapter
+import com.ilizma.view.adapter.util.ItemDiffUtil
+import com.ilizma.view.viewholder.ViewHolder
 
 class ArticlesAdapterImp(
     private val binderFactory: ArticleBinderFactory,
-    liveChannelItemDiffUtil: ArticleItemDiffUtil<Article>,
+    liveChannelItemDiffUtil: ItemDiffUtil<Article>,
     private val viewHolderFactory: ArticleViewHolderFactory,
     private val mapper: ArticleTypeMapper,
-) : ArticlesAdapter<Article>(liveChannelItemDiffUtil) {
+) : Adapter<Article>(liveChannelItemDiffUtil) {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int,
-    ): ArticleViewHolder<Article> = viewHolderFactory.create(
+    ): ViewHolder<Article> = viewHolderFactory.create(
         binderFactory = binderFactory,
         parent = parent,
         type = mapper.from(viewType),
     )
 
-    override fun onBindViewHolder(holder: ArticleViewHolder<Article>, position: Int) {
-        getItem(position).let { holder.bind(it, position) }
+    override fun onBindViewHolder(holder: ViewHolder<Article>, position: Int) {
+        getItem(position).let { holder.bind(it) }
     }
 
-    override fun onViewRecycled(holder: ArticleViewHolder<Article>) {
+    override fun onViewRecycled(holder: ViewHolder<Article>) {
         super.onViewRecycled(holder)
         holder.unBind()
     }

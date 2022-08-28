@@ -7,8 +7,8 @@ import com.ilizma.marketplace.presentation.model.Article
 import com.ilizma.marketplace.presentation.model.ArticlesState
 import com.ilizma.marketplace.presentation.model.CheckoutState
 import com.ilizma.marketplace.presentation.viewmodel.MarketplaceViewModel
-import com.ilizma.marketplace.view.adapter.ArticlesAdapter
-import com.ilizma.marketplace.view.adapter.factory.ArticlesAdapterFactory
+import com.ilizma.view.adapter.Adapter
+import com.ilizma.view.adapter.factory.AdapterFactory
 import com.ilizma.marketplace.view.databinding.MarketplaceScreenFragmentBinding
 import com.ilizma.resources.R
 import com.ilizma.view.extensions.setOnReactiveClickListener
@@ -16,12 +16,12 @@ import com.ilizma.view.extensions.snackbar
 
 class MarketplaceScreenFragmentBinderImp(
     viewModelLazy: Lazy<MarketplaceViewModel>,
-    adapterFactory: ArticlesAdapterFactory<Article>,
+    adapterFactory: AdapterFactory<Article>,
     private val lifecycleOwner: () -> LifecycleOwner,
 ) : MarketplaceScreenFragmentBinder {
 
     private val viewModel by viewModelLazy
-    private val adapter: ArticlesAdapter<Article> by lazy { adapterFactory.create() }
+    private val adapter: Adapter<Article> by lazy { adapterFactory.create() }
     private lateinit var binding: MarketplaceScreenFragmentBinding
 
     override fun bind(binding: MarketplaceScreenFragmentBinding) {

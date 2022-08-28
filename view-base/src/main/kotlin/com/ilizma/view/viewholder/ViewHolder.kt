@@ -1,14 +1,14 @@
-package com.ilizma.marketplace.view.viewholder
+package com.ilizma.view.viewholder
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 
-abstract class ArticleViewHolder<T>(
+abstract class ViewHolder<T>(
     itemView: View,
 ) : RecyclerView.ViewHolder(itemView) {
 
-    abstract fun bind(article: T, position: Int)
+    abstract fun bind(data: T)
 
     abstract fun unBind()
 
-} 
+}

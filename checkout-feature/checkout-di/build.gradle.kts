@@ -50,6 +50,7 @@ dependencies {
     // endregion
 
     // region Base
+    implementation(project(":view-base"))
     implementation(project(":presentation-base"))
     // endregion
 

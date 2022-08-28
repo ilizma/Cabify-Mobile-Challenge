@@ -1,8 +1,9 @@
 package com.ilizma.marketplace.view.adapter.util
 
 import com.ilizma.marketplace.presentation.model.Article
+import com.ilizma.view.adapter.util.ItemDiffUtil
 
-class ArticleItemDiffUtilImp : ArticleItemDiffUtil<Article>() {
+class ArticleItemDiffUtilImp : ItemDiffUtil<Article>() {
 
     override fun areItemsTheSame(
         oldItem: Article,

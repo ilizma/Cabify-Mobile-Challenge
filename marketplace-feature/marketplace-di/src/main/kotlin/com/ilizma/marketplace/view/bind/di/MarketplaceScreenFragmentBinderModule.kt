@@ -5,7 +5,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import com.ilizma.marketplace.presentation.model.Article
 import com.ilizma.marketplace.presentation.viewmodel.factory.di.MARKETPLACE_VIEW_MODEL_PROVIDER_NAMED
-import com.ilizma.marketplace.view.adapter.factory.ArticlesAdapterFactory
+import com.ilizma.view.adapter.factory.AdapterFactory
 import com.ilizma.marketplace.view.bind.MarketplaceScreenFragmentBinder
 import com.ilizma.marketplace.view.bind.MarketplaceScreenFragmentBinderImp
 import dagger.Module
@@ -21,7 +21,7 @@ object MarketplaceScreenFragmentBinderModule {
     @Provides
     fun provideMarketplaceScreenFragmentBinder(
         fragment: Fragment,
-        adapterFactory: ArticlesAdapterFactory<Article>,
+        adapterFactory: AdapterFactory<Article>,
         @Named(MARKETPLACE_VIEW_MODEL_PROVIDER_NAMED) viewModelProviderFactory: ViewModelProvider.Factory,
     ): MarketplaceScreenFragmentBinder = MarketplaceScreenFragmentBinderImp(
         viewModelLazy = fragment.viewModels { viewModelProviderFactory },
