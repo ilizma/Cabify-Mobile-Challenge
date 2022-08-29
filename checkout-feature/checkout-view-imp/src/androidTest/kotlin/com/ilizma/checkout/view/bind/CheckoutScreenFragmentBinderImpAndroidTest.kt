@@ -6,10 +6,13 @@ import com.ilizma.androidtest.launchFragmentInHiltContainer
 import com.ilizma.checkout.presentation.model.CheckoutInfo
 import com.ilizma.checkout.presentation.model.CheckoutInfoList
 import com.ilizma.checkout.presentation.viewmodel.CheckoutViewModel
+import com.ilizma.checkout.view.bind.di.CheckoutScreenFragmentBinderModule
 import com.ilizma.checkout.view.fragment.CheckoutScreenFragment
 import com.ilizma.view.adapter.factory.AdapterFactory
+import dagger.hilt.android.testing.BindValue
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
+import dagger.hilt.android.testing.UninstallModules
 import io.mockk.MockKAnnotations
 import io.mockk.every
 import io.mockk.impl.annotations.RelaxedMockK
@@ -19,6 +22,9 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 
+@UninstallModules(
+    CheckoutScreenFragmentBinderModule::class,
+)
 @HiltAndroidTest
 internal class CheckoutScreenFragmentBinderImpAndroidTest {
 
@@ -43,7 +49,9 @@ internal class CheckoutScreenFragmentBinderImpAndroidTest {
     @RelaxedMockK
     private lateinit var lifecycleOwner: LifecycleOwner
 
-    private lateinit var binder: CheckoutScreenFragmentBinder
+    @BindValue
+    @RelaxedMockK
+    lateinit var binder: CheckoutScreenFragmentBinder
 
     init {
         MockKAnnotations.init(this)

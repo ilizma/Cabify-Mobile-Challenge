@@ -80,7 +80,7 @@ dependencies {
     // endregion
 
     // region Checkout
-    api(project(":checkout-flow"))
+    implementation(project(":checkout-flow"))
     // endregion
 
 }

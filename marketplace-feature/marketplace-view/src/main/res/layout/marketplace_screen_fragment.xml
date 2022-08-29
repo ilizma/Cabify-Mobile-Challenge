@@ -42,7 +42,7 @@
         android:layout_gravity="bottom|center_horizontal"
         android:layout_marginBottom="@dimen/vertical_margin"
         android:backgroundTint="@color/colorPrimaryDark"
-        android:text="@string/checkout"
+        android:text="@string/basket"
         android:textColor="?android:attr/textColorPrimaryInverse"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

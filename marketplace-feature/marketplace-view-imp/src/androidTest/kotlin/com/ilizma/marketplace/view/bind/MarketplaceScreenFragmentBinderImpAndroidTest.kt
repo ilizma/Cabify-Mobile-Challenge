@@ -11,10 +11,13 @@ import com.ilizma.marketplace.presentation.model.ArticlesState
 import com.ilizma.marketplace.presentation.model.CheckoutState
 import com.ilizma.marketplace.presentation.viewmodel.MarketplaceViewModel
 import com.ilizma.marketplace.view.R
+import com.ilizma.marketplace.view.bind.di.MarketplaceScreenFragmentBinderModule
 import com.ilizma.marketplace.view.fragment.MarketplaceScreenFragment
 import com.ilizma.view.adapter.factory.AdapterFactory
+import dagger.hilt.android.testing.BindValue
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
+import dagger.hilt.android.testing.UninstallModules
 import io.mockk.MockKAnnotations
 import io.mockk.every
 import io.mockk.impl.annotations.RelaxedMockK
@@ -25,6 +28,9 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 
+@UninstallModules(
+    MarketplaceScreenFragmentBinderModule::class,
+)
 @HiltAndroidTest
 internal class MarketplaceScreenFragmentBinderImpAndroidTest {
 
@@ -52,7 +58,9 @@ internal class MarketplaceScreenFragmentBinderImpAndroidTest {
     @RelaxedMockK
     private lateinit var lifecycleOwner: LifecycleOwner
 
-    private lateinit var binder: MarketplaceScreenFragmentBinder
+    @BindValue
+    @RelaxedMockK
+    lateinit var binder: MarketplaceScreenFragmentBinder
 
     init {
         MockKAnnotations.init(this)

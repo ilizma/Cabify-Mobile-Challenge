@@ -82,6 +82,7 @@ dependencies {
     androidTestImplementation(project(":android-test-base"))
     androidTestImplementation(project(":marketplace-di"))
     androidTestImplementation(project(":marketplace-flow-imp"))
+    androidTestImplementation(project(":checkout-di"))
     // endregion
 
     // region Base

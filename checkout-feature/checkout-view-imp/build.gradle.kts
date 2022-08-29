@@ -11,7 +11,7 @@ android {
     defaultConfig {
         minSdk = ConfigData.minSdkVersion
         targetSdk = ConfigData.targetSdk
-        testInstrumentationRunner = ConfigData.testInstrumentationRunner
+        testInstrumentationRunner = "com.ilizma.androidtest.runner.CustomTestRunner"
     }
 
     compileOptions {
@@ -78,6 +78,9 @@ dependencies {
     androidTestImplementation(project(":android-test-base"))
     androidTestImplementation(project(":checkout-di"))
     androidTestImplementation(project(":checkout-flow-imp"))
+    androidTestImplementation(project(":marketplace-di"))
+    androidTestImplementation(project(":api-di"))
+    androidTestImplementation(project(":net-di"))
     // endregion
 
     // region Base
