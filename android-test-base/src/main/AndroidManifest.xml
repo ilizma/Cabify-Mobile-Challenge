@@ -1,0 +1,13 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.ilizma.android.test">
+
+    <application>
+
+        <activity
+            android:name="com.ilizma.androidtest.activity.HiltTestActivity"
+            android:exported="false"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+    </application>
+
+</manifest>

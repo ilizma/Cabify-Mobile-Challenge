@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name" translatable="false">Cabify Mobile Challenge</string>
+
+    <string name="crash_activity_message">An unexpected error has occurred. Sorry for the inconvenience.</string>
+    <string name="crash_activity_restart_button">RESTART APP</string>
+    <string name="crash_activity_logcat_button" translatable="false">LOGCAT</string>
+    <string name="crash_activity_clipboard_button">COPY TO CLIPBOARD</string>
+    <string name="crash_activity_snackbar_successful_title">Copied</string>
+    <string name="crash_activity_snackbar_successful_action">OKAY</string>
+
+    <string name="no_internet">No Internet connection</string>
+    <string name="timeout_message">Oops! Slow connection</string>
+    <string name="unknown_error">Unknown error</string>
+    <string name="unknown_reason">Unknown reason</string>
+    <string name="retry">Retry</string>
+    <string name="empty_list">Empty list</string>
+
+    <string name="currency_symbol" translatable="false">%s€</string>
+    <string name="promotion" translatable="false">%sx%s</string>
+    <string name="promotion_description">buy %s of the same product, get %s free</string>
+    <string name="bulk_description">buying %s or more, the price per unit should be %s€</string>
+    <string name="basket">Basket</string>
+    <string name="total">Total</string>
+
+</resources>

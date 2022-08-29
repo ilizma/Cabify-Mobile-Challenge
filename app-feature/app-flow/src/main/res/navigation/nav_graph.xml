@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@+id/marketplace_screen">
+
+    <fragment
+        android:id="@+id/marketplace_screen"
+        android:name="com.ilizma.marketplace.view.fragment.MarketplaceScreenFragment"
+        tools:layout="@layout/marketplace_screen_fragment">
+
+        <action
+            android:id="@+id/go_from_marketplace_to_checkout"
+            app:destination="@id/checkout_screen" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/checkout_screen"
+        android:name="com.ilizma.checkout.view.fragment.CheckoutScreenFragment"
+        tools:layout="@layout/checkout_screen_fragment">
+
+        <argument
+            android:name="articlesArgs"
+            app:argType="com.ilizma.checkout.flow.model.ArticlesInfoArgs" />
+
+    </fragment>
+
+</navigation>
