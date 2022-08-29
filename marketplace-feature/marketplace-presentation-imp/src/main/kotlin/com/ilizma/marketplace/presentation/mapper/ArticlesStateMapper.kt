@@ -9,7 +9,8 @@ class ArticlesStateMapper(
 
     fun from(
         state: ArticlesState.Success,
-    ): PresentationArticlesState.Success = state.list.map { mapper.from(it) }
+    ): PresentationArticlesState.Success = state.list
+        .map { mapper.from(it) }
         .let { PresentationArticlesState.Success(it) }
 
 

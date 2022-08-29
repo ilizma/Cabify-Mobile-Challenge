@@ -3,10 +3,11 @@ package com.ilizma.checkout.flow.model
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
-sealed class ArticleArgs(
+sealed class ArticleInfoArgs(
     open val name: String,
     open val quantity: Int,
-    open val price: String,
+    open val priceWithSymbol: String,
+    open val totalPrice: Float,
     open val oldPrice: String?,
     open val promotion: String?,
 ) : Parcelable {
@@ -15,12 +16,14 @@ sealed class ArticleArgs(
     data class Voucher(
         override val name: String,
         override val quantity: Int,
-        override val price: String,
+        override val priceWithSymbol: String,
+        override val totalPrice: Float,
         override val promotion: String,
-    ) : ArticleArgs(
+    ) : ArticleInfoArgs(
         name = name,
         quantity = quantity,
-        price = price,
+        priceWithSymbol = priceWithSymbol,
+        totalPrice = totalPrice,
         oldPrice = null,
         promotion = promotion,
     )
@@ -29,12 +32,14 @@ sealed class ArticleArgs(
     data class TShirt(
         override val name: String,
         override val quantity: Int,
-        override val price: String,
+        override val priceWithSymbol: String,
+        override val totalPrice: Float,
         override val oldPrice: String,
-    ) : ArticleArgs(
+    ) : ArticleInfoArgs(
         name = name,
         quantity = quantity,
-        price = price,
+        priceWithSymbol = priceWithSymbol,
+        totalPrice = totalPrice,
         oldPrice = oldPrice,
         promotion = null,
     )
@@ -43,11 +48,13 @@ sealed class ArticleArgs(
     data class Mug(
         override val name: String,
         override val quantity: Int,
-        override val price: String,
-    ) : ArticleArgs(
+        override val priceWithSymbol: String,
+        override val totalPrice: Float,
+    ) : ArticleInfoArgs(
         name = name,
         quantity = quantity,
-        price = price,
+        priceWithSymbol = priceWithSymbol,
+        totalPrice = totalPrice,
         oldPrice = null,
         promotion = null,
     )

@@ -15,5 +15,7 @@
 
     <string name="promotion_description">erosi berdinezko %s produktu, %s doan izan</string>
     <string name="bulk_description">%s edo gehiago erosiz, bakoitzaren prezioa %s izango da</string>
+    <string name="total">Guztira</string>
+    <string name="basket">Saskia</string>
 
 </resources>

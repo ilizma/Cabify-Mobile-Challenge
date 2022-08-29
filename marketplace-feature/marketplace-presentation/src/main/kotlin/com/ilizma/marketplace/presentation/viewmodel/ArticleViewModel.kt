@@ -8,10 +8,10 @@ abstract class ArticleViewModel : ViewModel() {
 
     abstract val quantity: LiveData<Int>
 
-    abstract fun getArticleQuantity(article: Article.Success)
+    abstract fun getArticleQuantity(articleName: String)
 
-    abstract fun onPlus(article: Article.Success)
+    abstract fun onPlus(articleName: String)
 
-    abstract fun onMinus(article: Article.Success)
+    abstract fun onMinus(articleName: String)
 
 }

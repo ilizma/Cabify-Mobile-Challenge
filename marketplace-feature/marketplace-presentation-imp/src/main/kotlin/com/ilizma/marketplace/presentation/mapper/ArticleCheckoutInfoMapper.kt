@@ -6,24 +6,27 @@ import com.ilizma.marketplace.presentation.model.ArticleCheckoutInfo as Presenta
 class ArticleCheckoutInfoMapper {
 
     fun from(
-        articlesCheckoutInfo: ArticleCheckoutInfo,
-    ): PresentationArticleCheckoutInfo = when (articlesCheckoutInfo) {
+        articleCheckoutInfo: ArticleCheckoutInfo,
+    ): PresentationArticleCheckoutInfo = when (articleCheckoutInfo) {
         is ArticleCheckoutInfo.Mug -> PresentationArticleCheckoutInfo.Mug(
-            name = articlesCheckoutInfo.name,
-            quantity = articlesCheckoutInfo.quantity,
-            price = articlesCheckoutInfo.price,
+            name = articleCheckoutInfo.name,
+            quantity = articleCheckoutInfo.quantity,
+            priceWithSymbol = articleCheckoutInfo.priceWithSymbol,
+            totalPrice = articleCheckoutInfo.totalPrice,
         )
         is ArticleCheckoutInfo.TShirt -> PresentationArticleCheckoutInfo.TShirt(
-            name = articlesCheckoutInfo.name,
-            quantity = articlesCheckoutInfo.quantity,
-            price = articlesCheckoutInfo.price,
-            oldPrice = articlesCheckoutInfo.oldPrice,
+            name = articleCheckoutInfo.name,
+            quantity = articleCheckoutInfo.quantity,
+            priceWithSymbol = articleCheckoutInfo.priceWithSymbol,
+            totalPrice = articleCheckoutInfo.totalPrice,
+            oldPrice = articleCheckoutInfo.oldPrice,
         )
         is ArticleCheckoutInfo.Voucher -> PresentationArticleCheckoutInfo.Voucher(
-            name = articlesCheckoutInfo.name,
-            quantity = articlesCheckoutInfo.quantity,
-            price = articlesCheckoutInfo.price,
-            promotion = articlesCheckoutInfo.promotion
+            name = articleCheckoutInfo.name,
+            quantity = articleCheckoutInfo.quantity,
+            priceWithSymbol = articleCheckoutInfo.priceWithSymbol,
+            totalPrice = articleCheckoutInfo.totalPrice,
+            promotion = articleCheckoutInfo.promotion,
         )
     }
 

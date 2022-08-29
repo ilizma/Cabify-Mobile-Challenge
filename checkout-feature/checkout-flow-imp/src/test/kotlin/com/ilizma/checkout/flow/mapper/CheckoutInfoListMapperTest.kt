@@ -2,8 +2,8 @@ package com.ilizma.checkout.flow.mapper
 
 import com.ilizma.checkout.data.model.CheckoutInfo
 import com.ilizma.checkout.data.model.CheckoutInfoList
-import com.ilizma.checkout.flow.model.ArticleArgs
-import com.ilizma.checkout.flow.model.ArticlesArgs
+import com.ilizma.checkout.flow.model.ArticleInfoArgs
+import com.ilizma.checkout.flow.model.ArticlesInfoArgs
 import io.mockk.MockKAnnotations
 import io.mockk.every
 import io.mockk.impl.annotations.RelaxedMockK
@@ -35,13 +35,13 @@ class CheckoutInfoListMapperTest {
     inner class From {
 
         @Test
-        fun `given ArticlesArgs, when from is called, then result should be CheckoutInfoList`() {
+        fun `given ArticleInfoArgs, when from is called, then result should be CheckoutInfoList`() {
             // given
-            val articleArgs = mockk<ArticleArgs>()
+            val articleInfoArgs = mockk<ArticleInfoArgs>()
             val checkoutInfo = mockk<CheckoutInfo>()
-            val dataCheckoutInfoList = ArticlesArgs(listOf(articleArgs))
+            val dataCheckoutInfoList = ArticlesInfoArgs(listOf(articleInfoArgs))
             val expected = CheckoutInfoList(listOf(checkoutInfo))
-            every { checkoutInfoMapper.from(articleArgs) } returns checkoutInfo
+            every { checkoutInfoMapper.from(articleInfoArgs) } returns checkoutInfo
 
             // when
             val result = mapper.from(dataCheckoutInfoList)

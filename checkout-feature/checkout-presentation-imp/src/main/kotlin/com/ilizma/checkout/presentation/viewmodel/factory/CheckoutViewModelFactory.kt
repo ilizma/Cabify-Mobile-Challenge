@@ -22,6 +22,7 @@ class CheckoutViewModelFactory(
         backgroundScheduler = Schedulers.io(),
         compositeDisposable = CompositeDisposable(),
         _list = MutableLiveData(),
+        _total = MutableLiveData(),
         _navigationAction = SingleLiveEvent(),
     ) as T
 

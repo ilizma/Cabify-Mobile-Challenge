@@ -77,5 +77,6 @@ object Test {
 object AndroidTest {
     val mockk by lazy { "io.mockk:mockk-android:${Versions.mockkVersion}" }
     val runner by lazy { "androidx.test:runner:${Versions.runnerVersion}" }
+    val espressoCore by lazy { "androidx.test.espresso:espresso-core:${Versions.espressoVersion}" }
     val fragmentScenario by lazy { "androidx.fragment:fragment-testing:${Versions.fragmentKtxVersion}" }
 }

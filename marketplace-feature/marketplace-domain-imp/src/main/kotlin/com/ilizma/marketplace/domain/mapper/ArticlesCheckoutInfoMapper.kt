@@ -14,6 +14,7 @@ class ArticlesCheckoutInfoMapper(
         discounts: DiscountDataList,
     ): ArticlesCheckoutInfo = products
         .map { mapper.from(it, productQuantityList, discounts) }
+        .let { list -> list.filterNot { it.quantity == 0 } }
         .let { ArticlesCheckoutInfo(it) }
 
 }

@@ -2,6 +2,7 @@ package com.ilizma.checkout.data.repository
 
 import com.ilizma.checkout.data.datasource.CheckoutDataSource
 import com.ilizma.checkout.data.mapper.CheckoutInfoListMapper
+import com.ilizma.checkout.data.model.CheckoutInfo
 import com.ilizma.checkout.domain.model.CheckoutInfoList
 import com.ilizma.checkout.domain.repository.CheckoutRepository
 import io.mockk.MockKAnnotations
@@ -13,6 +14,7 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
+import java.util.*
 import com.ilizma.checkout.data.model.CheckoutInfoList as DataCheckoutInfoList
 
 internal class CheckoutRepositoryImpTest {
@@ -24,6 +26,7 @@ internal class CheckoutRepositoryImpTest {
     private lateinit var mapper: CheckoutInfoListMapper
 
     private lateinit var repository: CheckoutRepository
+    private val currencySymbolText = "%s€"
 
     init {
         MockKAnnotations.init(this)
@@ -34,6 +37,8 @@ internal class CheckoutRepositoryImpTest {
         repository = CheckoutRepositoryImp(
             dataSource = dataSource,
             mapper = mapper,
+            locale = Locale.ENGLISH,
+            currencySymbolText = currencySymbolText,
         )
     }
 
@@ -50,6 +55,30 @@ internal class CheckoutRepositoryImpTest {
 
             // when
             val resultObserver = repository.getCheckoutInfoList()
+                .observeOn(Schedulers.trampoline())
+                .test()
+
+            // then
+            resultObserver.assertValue { it == expected }
+        }
+
+    }
+
+    @Nested
+    inner class GetTotal {
+
+        @Test
+        fun `given DataCheckoutInfoList, when getTotal is called, then result should be the expected String`() {
+            // given
+            val dataCheckoutInfo = mockk<CheckoutInfo>()
+            val dataCheckoutInfoList = listOf(dataCheckoutInfo)
+                .let { DataCheckoutInfoList(it) }
+            val expected = "19.00€"
+            every { dataSource.getCheckoutInfoList() } returns Single.just(dataCheckoutInfoList)
+            every { dataCheckoutInfo.totalPrice } returns 19f
+
+            // when
+            val resultObserver = repository.getTotal()
                 .observeOn(Schedulers.trampoline())
                 .test()
 

@@ -4,8 +4,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import com.ilizma.checkout.flow.navigator.CheckoutNavigator
-import com.ilizma.marketplace.flow.mapper.ArticleArgsMapper
-import com.ilizma.marketplace.flow.mapper.ArticlesArgsMapper
+import com.ilizma.marketplace.flow.mapper.ArticleInfoArgsMapper
+import com.ilizma.marketplace.flow.mapper.ArticlesInfoArgsMapper
 import com.ilizma.marketplace.flow.navigator.BackNavigator
 import com.ilizma.marketplace.flow.router.MarketplaceScreenRouterImp
 import com.ilizma.marketplace.presentation.viewmodel.factory.di.MARKETPLACE_VIEW_MODEL_PROVIDER_NAMED
@@ -32,8 +32,8 @@ object MarketplaceScreenRouterModule {
         viewModelLazy = fragment.viewModels { viewModelProviderFactory },
         checkoutNavigator = checkoutNavigator,
         backNavigator = backNavigator,
-        mapper = ArticlesArgsMapper(
-            mapper = ArticleArgsMapper(),
+        mapper = ArticlesInfoArgsMapper(
+            mapper = ArticleInfoArgsMapper(),
         ),
     )
 

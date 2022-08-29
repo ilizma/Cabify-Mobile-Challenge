@@ -2,9 +2,9 @@ package com.ilizma.marketplace.flow.router
 
 import androidx.activity.OnBackPressedDispatcher
 import androidx.lifecycle.LifecycleOwner
-import com.ilizma.checkout.flow.model.ArticlesArgs
+import com.ilizma.checkout.flow.model.ArticlesInfoArgs
 import com.ilizma.checkout.flow.navigator.CheckoutNavigator
-import com.ilizma.marketplace.flow.mapper.ArticlesArgsMapper
+import com.ilizma.marketplace.flow.mapper.ArticlesInfoArgsMapper
 import com.ilizma.marketplace.flow.navigator.BackNavigator
 import com.ilizma.marketplace.presentation.model.ArticlesCheckoutInfo
 import com.ilizma.marketplace.presentation.model.MarketplaceNavigationAction
@@ -41,7 +41,7 @@ internal class MarketplaceScreenRouterImpTest {
     private lateinit var backNavigator: BackNavigator
 
     @RelaxedMockK
-    private lateinit var mapper: ArticlesArgsMapper
+    private lateinit var mapper: ArticlesInfoArgsMapper
 
     private lateinit var router: MarketplaceScreenRouter
 
@@ -82,18 +82,18 @@ internal class MarketplaceScreenRouterImpTest {
                 // given
                 val navigationAction = mockk<MarketplaceNavigationAction.Checkout>()
                 val articlesCheckoutInfo = mockk<ArticlesCheckoutInfo>()
-                val articlesArgs = mockk<ArticlesArgs>()
+                val articlesInfoArgs = mockk<ArticlesInfoArgs>()
                 val navigationActions = TestMutableLiveData<MarketplaceNavigationAction>()
                 every { viewModel.navigationAction } returns navigationActions
                 every { navigationAction.articlesCheckoutInfo } returns articlesCheckoutInfo
-                every { mapper.from(articlesCheckoutInfo) } returns articlesArgs
+                every { mapper.from(articlesCheckoutInfo) } returns articlesInfoArgs
 
                 // when
                 router.init()
                 navigationActions.onChanged(navigationAction)
 
                 // then
-                verify { checkoutNavigator.navigate(articlesArgs) }
+                verify { checkoutNavigator.navigate(articlesInfoArgs) }
             }
 
             @Test

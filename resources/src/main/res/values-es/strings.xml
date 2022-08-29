@@ -15,5 +15,7 @@
 
     <string name="promotion_description">compra %s productos iguales, obten %s gratis</string>
     <string name="bulk_description">comprando %s o más, el precio por unidad será %s</string>
+    <string name="total">Total</string>
+    <string name="basket">Cesta</string>
 
 </resources>

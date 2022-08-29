@@ -50,6 +50,7 @@ internal class ArticlesCheckoutInfoMapperTest {
                     discounts = discountDataList,
                 )
             } returns articleCheckoutInfo
+            every { articleCheckoutInfo.quantity } returns 1
 
             // when
             val result = mapper.from(products, productQuantityList, discountDataList)

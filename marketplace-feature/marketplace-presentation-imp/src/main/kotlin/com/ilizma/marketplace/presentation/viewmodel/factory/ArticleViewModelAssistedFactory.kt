@@ -11,7 +11,6 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable
 interface ArticleViewModelAssistedFactory {
 
     fun create(
-        mapper: ArticleMapper,
         backgroundScheduler: Scheduler,
         compositeDisposable: CompositeDisposable,
         _quantity: MutableLiveData<Int>,

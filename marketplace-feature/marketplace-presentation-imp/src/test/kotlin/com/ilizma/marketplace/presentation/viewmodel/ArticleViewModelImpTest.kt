@@ -1,16 +1,13 @@
 package com.ilizma.marketplace.presentation.viewmodel
 
 import androidx.lifecycle.MutableLiveData
-import com.ilizma.marketplace.domain.model.Article
 import com.ilizma.marketplace.domain.usecase.AddArticleQuantityUseCase
 import com.ilizma.marketplace.domain.usecase.GetArticleQuantityUseCase
 import com.ilizma.marketplace.domain.usecase.RemoveArticleQuantityUseCase
-import com.ilizma.marketplace.presentation.mapper.ArticleMapper
 import com.ilizma.test.executor.InstantExecutorExtension
 import io.mockk.MockKAnnotations
 import io.mockk.every
 import io.mockk.impl.annotations.RelaxedMockK
-import io.mockk.mockk
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.CompositeDisposable
@@ -20,7 +17,6 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
-import com.ilizma.marketplace.presentation.model.Article as PresentationArticle
 
 @ExtendWith(InstantExecutorExtension::class)
 internal class ArticleViewModelImpTest {
@@ -33,9 +29,6 @@ internal class ArticleViewModelImpTest {
 
     @RelaxedMockK
     private lateinit var removeArticleQuantityUseCase: RemoveArticleQuantityUseCase
-
-    @RelaxedMockK
-    private lateinit var mapper: ArticleMapper
 
     @RelaxedMockK
     private lateinit var compositeDisposable: CompositeDisposable
@@ -52,7 +45,6 @@ internal class ArticleViewModelImpTest {
             getArticleQuantityUseCase = getArticleQuantityUseCase,
             addArticleQuantityUseCase = addArticleQuantityUseCase,
             removeArticleQuantityUseCase = removeArticleQuantityUseCase,
-            mapper = mapper,
             backgroundScheduler = Schedulers.trampoline(),
             compositeDisposable = compositeDisposable,
             _quantity = MutableLiveData(),
@@ -63,16 +55,14 @@ internal class ArticleViewModelImpTest {
     inner class GetArticleQuantity {
 
         @Test
-        fun `given presentationArticle, when getArticleQuantity, then the quantity liveData value should be the expected Int`() {
+        fun `given articleName, when getArticleQuantity, then the quantity liveData value should be the expected Int`() {
             // given
-            val presentationArticle = mockk<PresentationArticle.Success>()
-            val article = mockk<Article>()
+            val articleName = "articleName"
             val expected = 0
-            every { mapper.from(presentationArticle) } returns article
-            every { getArticleQuantityUseCase(article) } returns Single.just(expected)
+            every { getArticleQuantityUseCase(articleName) } returns Single.just(expected)
 
             // when
-            viewModel.getArticleQuantity(presentationArticle)
+            viewModel.getArticleQuantity(articleName)
 
             // then
             assertEquals(expected, viewModel.quantity.value)
@@ -84,17 +74,15 @@ internal class ArticleViewModelImpTest {
     inner class OnPlus {
 
         @Test
-        fun `given presentationArticle, when onPlus, then the quantity liveData value should be the expected Int`() {
+        fun `given articleName, when onPlus, then the quantity liveData value should be the expected Int`() {
             // given
-            val presentationArticle = mockk<PresentationArticle.Success>()
-            val article = mockk<Article>()
+            val articleName = "articleName"
             val expected = 0
-            every { mapper.from(presentationArticle) } returns article
-            every { addArticleQuantityUseCase(article) } returns Completable.complete()
-            every { getArticleQuantityUseCase(article) } returns Single.just(expected)
+            every { addArticleQuantityUseCase(articleName) } returns Completable.complete()
+            every { getArticleQuantityUseCase(articleName) } returns Single.just(expected)
 
             // when
-            viewModel.onPlus(presentationArticle)
+            viewModel.onPlus(articleName)
 
             // then
             assertEquals(expected, viewModel.quantity.value)
@@ -108,15 +96,13 @@ internal class ArticleViewModelImpTest {
         @Test
         fun `given presentationArticle, when onMinus, then the quantity liveData value should be the expected Int`() {
             // given
-            val presentationArticle = mockk<PresentationArticle.Success>()
-            val article = mockk<Article>()
+            val articleName = "articleName"
             val expected = 0
-            every { mapper.from(presentationArticle) } returns article
-            every { removeArticleQuantityUseCase(article) } returns Completable.complete()
-            every { getArticleQuantityUseCase(article) } returns Single.just(expected)
+            every { removeArticleQuantityUseCase(articleName) } returns Completable.complete()
+            every { getArticleQuantityUseCase(articleName) } returns Single.just(expected)
 
             // when
-            viewModel.onMinus(presentationArticle)
+            viewModel.onMinus(articleName)
 
             // then
             assertEquals(expected, viewModel.quantity.value)

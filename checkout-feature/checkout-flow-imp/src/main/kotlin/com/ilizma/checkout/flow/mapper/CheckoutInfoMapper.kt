@@ -1,29 +1,32 @@
 package com.ilizma.checkout.flow.mapper
 
 import com.ilizma.checkout.data.model.CheckoutInfo
-import com.ilizma.checkout.flow.model.ArticleArgs
+import com.ilizma.checkout.flow.model.ArticleInfoArgs
 
 class CheckoutInfoMapper {
 
     fun from(
-        args: ArticleArgs,
+        args: ArticleInfoArgs,
     ): CheckoutInfo = when (args) {
-        is ArticleArgs.Mug -> CheckoutInfo.Mug(
+        is ArticleInfoArgs.Mug -> CheckoutInfo.Mug(
             name = args.name,
             quantity = args.quantity,
-            price = args.price,
+            priceWithSymbol = args.priceWithSymbol,
+            totalPrice = args.totalPrice,
         )
-        is ArticleArgs.TShirt -> CheckoutInfo.TShirt(
+        is ArticleInfoArgs.TShirt -> CheckoutInfo.TShirt(
             name = args.name,
             quantity = args.quantity,
-            price = args.price,
             oldPrice = args.oldPrice,
+            priceWithSymbol = args.priceWithSymbol,
+            totalPrice = args.totalPrice,
         )
-        is ArticleArgs.Voucher -> CheckoutInfo.Voucher(
+        is ArticleInfoArgs.Voucher -> CheckoutInfo.Voucher(
             name = args.name,
             quantity = args.quantity,
-            price = args.price,
             promotion = args.promotion,
+            priceWithSymbol = args.priceWithSymbol,
+            totalPrice = args.totalPrice,
         )
     }
 

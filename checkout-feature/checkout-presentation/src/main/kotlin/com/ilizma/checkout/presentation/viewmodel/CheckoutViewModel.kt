@@ -9,6 +9,8 @@ abstract class CheckoutViewModel : ViewModel() {
 
     abstract val list: LiveData<CheckoutInfoList>
 
+    abstract val total: LiveData<String>
+
     abstract val navigationAction: LiveData<CheckoutNavigationAction>
 
     abstract fun onBack()

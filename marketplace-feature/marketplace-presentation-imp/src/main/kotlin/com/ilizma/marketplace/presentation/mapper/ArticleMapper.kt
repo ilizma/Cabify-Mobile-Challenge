@@ -11,35 +11,16 @@ class ArticleMapper {
     ): PresentationArticle.Success = when (article) {
         is Mug -> PresentationArticle.Success.Mug(
             name = article.name,
-            price = article.price,
+            priceWithSymbol = article.priceWithSymbol,
         )
         is TShirt -> PresentationArticle.Success.TShirt(
             name = article.name,
-            price = article.price,
+            priceWithSymbol = article.priceWithSymbol,
             discountDescription = article.discountDescription,
         )
         is Voucher -> PresentationArticle.Success.Voucher(
             name = article.name,
-            price = article.price,
-            discountDescription = article.discountDescription,
-        )
-    }
-
-    fun from(
-        article: PresentationArticle.Success,
-    ): Article = when (article) {
-        is PresentationArticle.Success.Mug -> Mug(
-            name = article.name,
-            price = article.price,
-        )
-        is PresentationArticle.Success.TShirt -> TShirt(
-            name = article.name,
-            price = article.price,
-            discountDescription = article.discountDescription,
-        )
-        is PresentationArticle.Success.Voucher -> Voucher(
-            name = article.name,
-            price = article.price,
+            priceWithSymbol = article.priceWithSymbol,
             discountDescription = article.discountDescription,
         )
     }

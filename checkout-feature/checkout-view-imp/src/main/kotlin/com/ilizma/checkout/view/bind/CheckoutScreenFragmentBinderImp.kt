@@ -33,12 +33,22 @@ class CheckoutScreenFragmentBinderImp(
             lifecycleOwner(),
             ::onCheckoutInfoList,
         )
+        viewModel.total.observe(
+            lifecycleOwner(),
+            ::onTotal,
+        )
     }
 
     private fun onCheckoutInfoList(
         checkoutInfoList: CheckoutInfoList,
     ) {
         adapter.submitList(checkoutInfoList.list)
+    }
+
+    private fun onTotal(
+        total: String,
+    ) {
+        binding.checkoutScreenTvTotal.text = total
     }
 
 }

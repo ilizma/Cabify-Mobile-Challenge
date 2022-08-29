@@ -3,6 +3,7 @@ package com.ilizma.checkout.presentation.viewmodel
 import androidx.lifecycle.MutableLiveData
 import com.ilizma.checkout.domain.model.CheckoutInfoList
 import com.ilizma.checkout.domain.usecase.GetCheckoutInfoListUseCase
+import com.ilizma.checkout.domain.usecase.GetTotalUseCase
 import com.ilizma.checkout.presentation.mapper.CheckoutInfoListMapper
 import com.ilizma.checkout.presentation.model.CheckoutNavigationAction
 import com.ilizma.presentation.SingleLiveEvent
@@ -24,7 +25,10 @@ import com.ilizma.checkout.presentation.model.CheckoutInfoList as PresentationCh
 internal class CheckoutViewModelImpTest {
 
     @RelaxedMockK
-    private lateinit var useCase: GetCheckoutInfoListUseCase
+    private lateinit var getCheckoutInfoListUseCase: GetCheckoutInfoListUseCase
+
+    @RelaxedMockK
+    private lateinit var getTotalUseCase: GetTotalUseCase
 
     @RelaxedMockK
     private lateinit var mapper: CheckoutInfoListMapper
@@ -40,11 +44,13 @@ internal class CheckoutViewModelImpTest {
 
     private fun initViewModel() {
         viewModel = CheckoutViewModelImp(
-            useCase = useCase,
+            getCheckoutInfoListUseCase = getCheckoutInfoListUseCase,
+            getTotalUseCase = getTotalUseCase,
             mapper = mapper,
             backgroundScheduler = Schedulers.trampoline(),
             compositeDisposable = compositeDisposable,
             _list = MutableLiveData(),
+            _total = MutableLiveData(),
             _navigationAction = SingleLiveEvent(),
         )
     }
@@ -52,19 +58,42 @@ internal class CheckoutViewModelImpTest {
     @Nested
     inner class Init {
 
-        @Test
-        fun `given CheckoutInfoList, when viewModel is initialized, then the list liveData value should be the expected`() {
-            // given
-            val checkoutInfoList = mockk<CheckoutInfoList>()
-            val expected = mockk<PresentationCheckoutInfoList>()
-            every { useCase() } returns Single.just(checkoutInfoList)
-            every { mapper.from(checkoutInfoList) } returns expected
+        @Nested
+        inner class GetCheckoutInfoList {
 
-            // when
-            initViewModel()
+            @Test
+            fun `given CheckoutInfoList, when viewModel is initialized, then the list liveData value should be the expected`() {
+                // given
+                val checkoutInfoList = mockk<CheckoutInfoList>()
+                val expected = mockk<PresentationCheckoutInfoList>()
+                every { getCheckoutInfoListUseCase() } returns Single.just(checkoutInfoList)
+                every { mapper.from(checkoutInfoList) } returns expected
 
-            // then
-            assertEquals(expected, viewModel.list.value)
+                // when
+                initViewModel()
+
+                // then
+                assertEquals(expected, viewModel.list.value)
+            }
+
+        }
+
+        @Nested
+        inner class GetTotal {
+
+            @Test
+            fun `given expected string, when viewModel is initialized, then the total liveData value should be the expected`() {
+                // given
+                val expected = "19.00€"
+                every { getTotalUseCase() } returns Single.just(expected)
+
+                // when
+                initViewModel()
+
+                // then
+                assertEquals(expected, viewModel.total.value)
+            }
+
         }
 
     }

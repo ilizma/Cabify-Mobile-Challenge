@@ -21,7 +21,7 @@
 
         <argument
             android:name="articlesArgs"
-            app:argType="com.ilizma.checkout.flow.model.ArticlesArgs" />
+            app:argType="com.ilizma.checkout.flow.model.ArticlesInfoArgs" />
 
     </fragment>
 

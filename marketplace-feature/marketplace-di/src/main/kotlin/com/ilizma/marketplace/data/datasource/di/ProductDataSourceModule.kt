@@ -27,7 +27,7 @@ object ProductDataSourceModule {
         mapper = ProductsStateMapper(
             mapper = ProductMapper(
                 locale = Locale.getDefault(),
-                moneyText = context.getString(R.string.money_symbol),
+                currencySymbolText = context.getString(R.string.currency_symbol),
             ),
             unknownErrorMessage = context.getString(R.string.unknown_error),
         ),

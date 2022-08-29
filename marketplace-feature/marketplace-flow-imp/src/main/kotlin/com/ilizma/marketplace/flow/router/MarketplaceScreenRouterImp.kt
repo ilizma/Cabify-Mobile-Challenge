@@ -4,7 +4,7 @@ import androidx.activity.OnBackPressedCallback
 import androidx.activity.OnBackPressedDispatcher
 import androidx.lifecycle.LifecycleOwner
 import com.ilizma.checkout.flow.navigator.CheckoutNavigator
-import com.ilizma.marketplace.flow.mapper.ArticlesArgsMapper
+import com.ilizma.marketplace.flow.mapper.ArticlesInfoArgsMapper
 import com.ilizma.marketplace.flow.navigator.BackNavigator
 import com.ilizma.marketplace.presentation.model.MarketplaceNavigationAction
 import com.ilizma.marketplace.presentation.viewmodel.MarketplaceViewModel
@@ -16,7 +16,7 @@ class MarketplaceScreenRouterImp(
     viewModelLazy: Lazy<MarketplaceViewModel>,
     private val checkoutNavigator: CheckoutNavigator,
     private val backNavigator: BackNavigator,
-    private val mapper: ArticlesArgsMapper,
+    private val mapper: ArticlesInfoArgsMapper,
 ) : MarketplaceScreenRouter {
 
     private val viewModel by viewModelLazy

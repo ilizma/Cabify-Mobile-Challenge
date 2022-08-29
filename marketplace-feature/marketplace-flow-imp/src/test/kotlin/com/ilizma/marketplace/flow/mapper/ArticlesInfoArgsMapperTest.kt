@@ -1,7 +1,7 @@
 package com.ilizma.marketplace.flow.mapper
 
-import com.ilizma.checkout.flow.model.ArticleArgs
-import com.ilizma.checkout.flow.model.ArticlesArgs
+import com.ilizma.checkout.flow.model.ArticleInfoArgs
+import com.ilizma.checkout.flow.model.ArticlesInfoArgs
 import com.ilizma.marketplace.presentation.model.ArticleCheckoutInfo
 import com.ilizma.marketplace.presentation.model.ArticlesCheckoutInfo
 import io.mockk.MockKAnnotations
@@ -13,12 +13,12 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 
-internal class ArticlesArgsMapperTest {
+internal class ArticlesInfoArgsMapperTest {
 
     @RelaxedMockK
-    private lateinit var articleArgsMapper: ArticleArgsMapper
+    private lateinit var articleInfoArgsMapper: ArticleInfoArgsMapper
 
-    private lateinit var mapper: ArticlesArgsMapper
+    private lateinit var mapper: ArticlesInfoArgsMapper
 
     init {
         MockKAnnotations.init(this)
@@ -26,8 +26,8 @@ internal class ArticlesArgsMapperTest {
 
     @BeforeEach
     private fun setup() {
-        mapper = ArticlesArgsMapper(
-            mapper = articleArgsMapper,
+        mapper = ArticlesInfoArgsMapper(
+            mapper = articleInfoArgsMapper,
         )
     }
 
@@ -35,14 +35,14 @@ internal class ArticlesArgsMapperTest {
     inner class From {
 
         @Test
-        fun `given ArticleCheckoutInfo, when from is called, then result should be the expected ArticleArgs`() {
+        fun `given ArticleCheckoutInfo, when from is called, then result should be the expected ArticleInfoArgs`() {
             // given
             val articlesCheckoutInfo = mockk<ArticlesCheckoutInfo>()
             val articleCheckoutInfo = mockk<ArticleCheckoutInfo>()
-            val articleArgs = mockk<ArticleArgs>()
-            val expected = ArticlesArgs(listOf(articleArgs))
+            val articleInfoArgs = mockk<ArticleInfoArgs>()
+            val expected = ArticlesInfoArgs(listOf(articleInfoArgs))
             every { articlesCheckoutInfo.list } returns listOf(articleCheckoutInfo)
-            every { articleArgsMapper.from(articleCheckoutInfo) } returns articleArgs
+            every { articleInfoArgsMapper.from(articleCheckoutInfo) } returns articleInfoArgs
 
             // when
             val result = mapper.from(articlesCheckoutInfo)

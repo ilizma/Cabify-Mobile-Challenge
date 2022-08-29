@@ -22,7 +22,7 @@ class BackNavigatorImpTest {
     @BeforeEach
     private fun setup() {
         navigator = BackNavigatorImp(
-            navController = navController,
+            navController = { navController },
         )
     }
 

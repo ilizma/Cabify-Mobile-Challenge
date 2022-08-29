@@ -12,7 +12,7 @@ private const val TWO_DECIMAL_FORMAT = "%.2f"
 
 class ProductMapper(
     private val locale: Locale,
-    private val moneyText: String,
+    private val currencySymbolText: String,
 ) {
 
     fun from(
@@ -22,21 +22,24 @@ class ProductMapper(
             when (dto.code) {
                 ProductCodeDTO.VOUCHER -> DataProduct.Voucher(
                     name = dto.name ?: "",
-                    price = (dto.price ?: 0f)
+                    priceWithSymbol = (dto.price ?: 0f)
                         .let { String.format(locale, TWO_DECIMAL_FORMAT, it) }
-                        .let { moneyText.format(it) },
+                        .let { currencySymbolText.format(it) },
+                    price = (dto.price ?: 0f)
                 )
                 ProductCodeDTO.T_SHIRT -> DataProduct.TShirt(
                     name = dto.name ?: "",
-                    price = (dto.price ?: 0f)
+                    priceWithSymbol = (dto.price ?: 0f)
                         .let { String.format(locale, TWO_DECIMAL_FORMAT, it) }
-                        .let { moneyText.format(it) },
+                        .let { currencySymbolText.format(it) },
+                    price = (dto.price ?: 0f)
                 )
                 ProductCodeDTO.MUG -> DataProduct.Mug(
                     name = dto.name ?: "",
-                    price = (dto.price ?: 0f)
+                    priceWithSymbol = (dto.price ?: 0f)
                         .let { String.format(locale, TWO_DECIMAL_FORMAT, it) }
-                        .let { moneyText.format(it) },
+                        .let { currencySymbolText.format(it) },
+                    price = (dto.price ?: 0f)
                 )
                 else -> throw IllegalArgumentException("Unknown product code ${dto.code}")
             }
@@ -48,49 +51,18 @@ class ProductMapper(
     ): Product = when (product) {
         is DataProduct.Mug -> Mug(
             name = product.name,
+            priceWithSymbol = product.priceWithSymbol,
             price = product.price,
         )
         is DataProduct.TShirt -> TShirt(
             name = product.name,
+            priceWithSymbol = product.priceWithSymbol,
             price = product.price,
         )
         is DataProduct.Voucher -> Voucher(
             name = product.name,
+            priceWithSymbol = product.priceWithSymbol,
             price = product.price,
-        )
-    }
-
-    fun from(
-        product: Product,
-    ): DataProduct = when (product) {
-        is Mug -> DataProduct.Mug(
-            name = product.name,
-            price = product.price,
-        )
-        is TShirt -> DataProduct.TShirt(
-            name = product.name,
-            price = product.price,
-        )
-        is Voucher -> DataProduct.Voucher(
-            name = product.name,
-            price = product.price,
-        )
-    }
-
-    fun from(
-        article: Article,
-    ): DataProduct = when (article) {
-        is Article.Mug -> DataProduct.Mug(
-            name = article.name,
-            price = article.price,
-        )
-        is Article.TShirt -> DataProduct.TShirt(
-            name = article.name,
-            price = article.price,
-        )
-        is Article.Voucher -> DataProduct.Voucher(
-            name = article.name,
-            price = article.price,
         )
     }
 

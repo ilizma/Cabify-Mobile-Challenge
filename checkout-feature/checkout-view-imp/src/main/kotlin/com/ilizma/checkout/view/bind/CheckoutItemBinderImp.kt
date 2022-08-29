@@ -17,7 +17,9 @@ class CheckoutItemBinderImp : CheckoutItemBinder<CheckoutInfo> {
         (binding.checkoutItemTvOldPrice.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG)
             .let { binding.checkoutItemTvOldPrice.paintFlags = it }
         binding.checkoutItemTvName.text = checkoutInfo.name
-        binding.checkoutItemTvPrice.text = checkoutInfo.price
+        binding.checkoutItemTvQuantity.text = checkoutInfo.quantity.toString()
+        binding.checkoutItemTvPrice.text = checkoutInfo.priceWithSymbol
+        binding.checkoutItemTvTotalPrice.text = checkoutInfo.totalPriceWithSymbol
         checkoutInfo.oldPrice?.let { binding.checkoutItemTvOldPrice.text = it }
         checkoutInfo.promotion?.let { binding.checkoutItemTvPromotion.text = it }
     }

@@ -7,4 +7,6 @@ interface CheckoutRepository {
 
     fun getCheckoutInfoList(): Single<CheckoutInfoList>
 
+    fun getTotal(): Single<String>
+
 }

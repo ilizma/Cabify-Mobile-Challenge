@@ -62,6 +62,24 @@ dependencies {
     implementation(AndroidKtx.core)
     // endregion
 
+    // region Test
+    testImplementation(Test.mockk)
+    testImplementation(Test.junitApi)
+    testRuntimeOnly(Test.junitEngine)
+    // endregion
+
+    // region AndroidTest
+    androidTestImplementation(Di.testing)
+    androidTestImplementation(AndroidTest.mockk)
+    androidTestImplementation(AndroidTest.runner)
+    androidTestImplementation(AndroidTest.espressoCore)
+    androidTestImplementation(AndroidTest.fragmentScenario)
+    kaptAndroidTest(Di.compiler)
+    androidTestImplementation(project(":android-test-base"))
+    androidTestImplementation(project(":checkout-di"))
+    androidTestImplementation(project(":checkout-flow-imp"))
+    // endregion
+
     // region Base
     implementation(project(":view-base"))
     // endregion

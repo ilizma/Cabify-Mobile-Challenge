@@ -5,15 +5,20 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
+import java.util.*
 import com.ilizma.checkout.data.model.CheckoutInfo as DataCheckoutInfo
 
 internal class CheckoutInfoMapperTest {
 
     private lateinit var mapper: CheckoutInfoMapper
+    private val currencySymbolText = "%s€"
 
     @BeforeEach
     private fun setup() {
-        mapper = CheckoutInfoMapper()
+        mapper = CheckoutInfoMapper(
+            locale = Locale.ENGLISH,
+            currencySymbolText = currencySymbolText,
+        )
     }
 
     @Nested
@@ -25,15 +30,19 @@ internal class CheckoutInfoMapperTest {
             val name = "name"
             val quantity = 1
             val price = "price"
+            val totalPrice = 19f
+            val totalPriceWithSymbol = "19.00€"
             val dataCheckoutInfo = DataCheckoutInfo.Mug(
                 name = name,
                 quantity = quantity,
-                price = price,
+                priceWithSymbol = price,
+                totalPrice = totalPrice,
             )
             val expected = CheckoutInfo.Mug(
                 name = name,
                 quantity = quantity,
-                price = price,
+                priceWithSymbol = price,
+                totalPriceWithSymbol = totalPriceWithSymbol,
             )
 
             // when
@@ -49,18 +58,22 @@ internal class CheckoutInfoMapperTest {
             val name = "name"
             val quantity = 1
             val price = "price"
+            val totalPrice = 19f
+            val totalPriceWithSymbol = "19.00€"
             val oldPrice = "oldPrice"
             val dataCheckoutInfo = DataCheckoutInfo.TShirt(
                 name = name,
                 quantity = quantity,
-                price = price,
+                priceWithSymbol = price,
                 oldPrice = oldPrice,
+                totalPrice = totalPrice,
             )
             val expected = CheckoutInfo.TShirt(
                 name = name,
                 quantity = quantity,
-                price = price,
+                priceWithSymbol = price,
                 oldPrice = oldPrice,
+                totalPriceWithSymbol = totalPriceWithSymbol,
             )
 
             // when
@@ -76,18 +89,22 @@ internal class CheckoutInfoMapperTest {
             val name = "name"
             val quantity = 1
             val price = "price"
+            val totalPrice = 19f
+            val totalPriceWithSymbol = "19.00€"
             val promotion = "promotion"
             val dataCheckoutInfo = DataCheckoutInfo.Voucher(
                 name = name,
                 quantity = quantity,
-                price = price,
+                priceWithSymbol = price,
                 promotion = promotion,
+                totalPrice = totalPrice,
             )
             val expected = CheckoutInfo.Voucher(
                 name = name,
                 quantity = quantity,
-                price = price,
+                priceWithSymbol = price,
                 promotion = promotion,
+                totalPriceWithSymbol = totalPriceWithSymbol,
             )
 
             // when

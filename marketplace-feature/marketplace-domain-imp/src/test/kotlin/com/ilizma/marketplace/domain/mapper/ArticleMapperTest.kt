@@ -32,8 +32,15 @@ internal class ArticleMapperTest {
         @Test
         fun `given Mug Product, when from, then result should be the expected Mug Article`() {
             // given
-            val product = Product.Mug(name = "Cabify Coffee Mug", price = "7.50€")
-            val expected = Article.Mug(name = "Cabify Coffee Mug", price = "7.50€")
+            val product = Product.Mug(
+                name = "Cabify Coffee Mug",
+                priceWithSymbol = "7.50€",
+                price = 7.5f,
+            )
+            val expected = Article.Mug(
+                name = "Cabify Coffee Mug",
+                priceWithSymbol = "7.50€",
+            )
 
             // when
             val result = mapper.from(product, discountDescriptions)
@@ -47,11 +54,12 @@ internal class ArticleMapperTest {
             // given
             val product = Product.TShirt(
                 name = "Cabify T-Shirt",
-                price = "20.00€",
+                priceWithSymbol = "20.00€",
+                price = 20f,
             )
             val expected = Article.TShirt(
                 name = "Cabify T-Shirt",
-                price = "20.00€",
+                priceWithSymbol = "20.00€",
                 discountDescription = tShirtDiscountDescription,
             )
 
@@ -67,11 +75,12 @@ internal class ArticleMapperTest {
             // given
             val product = Product.Voucher(
                 name = "Cabify Voucher",
-                price = "5.00€",
+                priceWithSymbol = "5.00€",
+                price = 5f,
             )
             val expected = Article.Voucher(
                 name = "Cabify Voucher",
-                price = "5.00€",
+                priceWithSymbol = "5.00€",
                 discountDescription = voucherDiscountDescription,
             )
 

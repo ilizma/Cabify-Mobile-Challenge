@@ -33,7 +33,7 @@ object GetArticlesCheckoutInfoUseCaseModule {
         mapper = ArticlesCheckoutInfoMapper(
             mapper = ArticleCheckoutInfoMapper(
                 locale = Locale.getDefault(),
-                moneyText = context.getString(R.string.money_symbol),
+                currencySymbolText = context.getString(R.string.currency_symbol),
                 promotionText = context.getString(R.string.promotion),
             )
         ),

@@ -2,7 +2,6 @@ package com.ilizma.marketplace.view.bind.factory
 
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
-import com.ilizma.marketplace.presentation.mapper.ArticleMapper
 import com.ilizma.marketplace.presentation.model.Article
 import com.ilizma.marketplace.presentation.viewmodel.ArticleViewModel
 import com.ilizma.marketplace.presentation.viewmodel.factory.ArticleViewModelAssistedFactory
@@ -29,7 +28,6 @@ class ArticleBinderFactory(
 
     private fun createViewModel(
     ): ArticleViewModel = viewModelAssistedFactory.create(
-        mapper = ArticleMapper(),
         backgroundScheduler = Schedulers.io(),
         compositeDisposable = CompositeDisposable(),
         _quantity = MutableLiveData(),

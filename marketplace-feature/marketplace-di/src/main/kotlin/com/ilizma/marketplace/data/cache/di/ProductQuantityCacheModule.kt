@@ -1,7 +1,7 @@
 package com.ilizma.marketplace.data.cache.di
 
-import com.ilizma.marketplace.data.cache.ProductCache
-import com.ilizma.marketplace.data.cache.ProductCacheImp
+import com.ilizma.marketplace.data.cache.ProductQuantityCache
+import com.ilizma.marketplace.data.cache.ProductQuantityCacheImp
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -10,12 +10,12 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object ProductCacheModule {
+object ProductQuantityCacheModule {
 
     @Provides
     @Singleton
     fun provideProductCache(
-    ): ProductCache = ProductCacheImp(
+    ): ProductQuantityCache = ProductQuantityCacheImp(
         cacheMap = hashMapOf(),
     )
 

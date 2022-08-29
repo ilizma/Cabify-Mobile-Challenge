@@ -22,7 +22,7 @@ class GetArticlesCheckoutInfoUseCaseImp(
         discountRepository.getDiscounts(),
     ) { products: List<Product>, discounts: DiscountDataList ->
         products.map { product ->
-            articleRepository.getQuantity(product)
+            articleRepository.getQuantity(product.name)
                 .blockingGet()
                 .let { product to it }
         }.let { mapper.from(products, it, discounts) }

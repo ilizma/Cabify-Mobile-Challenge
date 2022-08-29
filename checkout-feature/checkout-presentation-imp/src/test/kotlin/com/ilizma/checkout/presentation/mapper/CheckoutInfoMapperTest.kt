@@ -25,15 +25,18 @@ internal class CheckoutInfoMapperTest {
             val name = "name"
             val quantity = 1
             val price = "price"
+            val totalPriceWithSymbol = "totalPriceWithSymbol"
             val checkoutInfo = CheckoutInfo.Mug(
                 name = name,
                 quantity = quantity,
-                price = price,
+                priceWithSymbol = price,
+                totalPriceWithSymbol = totalPriceWithSymbol,
             )
             val expected = PresentationCheckoutInfo.Mug(
                 name = name,
                 quantity = quantity,
-                price = price,
+                priceWithSymbol = price,
+                totalPriceWithSymbol = totalPriceWithSymbol,
             )
 
             // when
@@ -49,18 +52,21 @@ internal class CheckoutInfoMapperTest {
             val name = "name"
             val quantity = 1
             val price = "price"
+            val totalPriceWithSymbol = "totalPriceWithSymbol"
             val oldPrice = "oldPrice"
             val checkoutInfo = CheckoutInfo.TShirt(
                 name = name,
                 quantity = quantity,
-                price = price,
+                priceWithSymbol = price,
                 oldPrice = oldPrice,
+                totalPriceWithSymbol = totalPriceWithSymbol,
             )
             val expected = PresentationCheckoutInfo.TShirt(
                 name = name,
                 quantity = quantity,
-                price = price,
+                priceWithSymbol = price,
                 oldPrice = oldPrice,
+                totalPriceWithSymbol = totalPriceWithSymbol,
             )
 
             // when
@@ -76,18 +82,21 @@ internal class CheckoutInfoMapperTest {
             val name = "name"
             val quantity = 1
             val price = "price"
+            val totalPriceWithSymbol = "totalPriceWithSymbol"
             val promotion = "promotion"
             val checkoutInfo = CheckoutInfo.Voucher(
                 name = name,
                 quantity = quantity,
-                price = price,
+                priceWithSymbol = price,
                 promotion = promotion,
+                totalPriceWithSymbol = totalPriceWithSymbol,
             )
             val expected = PresentationCheckoutInfo.Voucher(
                 name = name,
                 quantity = quantity,
-                price = price,
+                priceWithSymbol = price,
                 promotion = promotion,
+                totalPriceWithSymbol = totalPriceWithSymbol,
             )
 
             // when

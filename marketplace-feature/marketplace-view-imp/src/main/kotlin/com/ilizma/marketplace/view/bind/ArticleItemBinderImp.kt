@@ -15,7 +15,7 @@ class ArticleItemBinderImp(
 
     override fun bind(binding: ArticleItemBinding, article: Article.Success) {
         this.binding = binding
-        viewModel.getArticleQuantity(article)
+        viewModel.getArticleQuantity(article.name)
         setupObservers()
         setupView(binding, article)
     }
@@ -42,9 +42,9 @@ class ArticleItemBinderImp(
             is Article.Success.Voucher -> article.discountDescription
             is Article.Success.Mug -> ""
         }.let { binding.articleItemTvDescription.text = it }
-        binding.articleItemTvPrice.text = article.price
-        binding.articleItemTvPlus.setOnReactiveClickListener { viewModel.onPlus(article) }
-        binding.articleItemTvMinus.setOnReactiveClickListener { viewModel.onMinus(article) }
+        binding.articleItemTvPrice.text = article.priceWithSymbol
+        binding.articleItemTvPlus.setOnReactiveClickListener { viewModel.onPlus(article.name) }
+        binding.articleItemTvMinus.setOnReactiveClickListener { viewModel.onMinus(article.name) }
     }
 
     private fun onQuantity(

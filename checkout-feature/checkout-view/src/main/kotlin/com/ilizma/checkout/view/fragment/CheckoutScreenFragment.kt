@@ -15,10 +15,10 @@ import javax.inject.Inject
 class CheckoutScreenFragment : Fragment(R.layout.checkout_screen_fragment) {
 
     @Inject
-    internal lateinit var binder: CheckoutScreenFragmentBinder
+    lateinit var binder: CheckoutScreenFragmentBinder
 
     @Inject
-    internal lateinit var router: CheckoutScreenRouter
+    lateinit var router: CheckoutScreenRouter
 
     private val binding by viewBinding(CheckoutScreenFragmentBinding::bind)
 

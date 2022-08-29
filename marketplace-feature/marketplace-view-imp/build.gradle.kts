@@ -62,26 +62,26 @@ dependencies {
     implementation(UI.shimmer)
     // endregion
 
+    // region AndroidKtx
+    implementation(AndroidKtx.core)
+    // endregion
+
     // region Test
     testImplementation(Test.mockk)
     testImplementation(Test.junitApi)
     testRuntimeOnly(Test.junitEngine)
-    testImplementation(project(":test-base"))
     // endregion
 
     // region AndroidTest
     androidTestImplementation(Di.testing)
     androidTestImplementation(AndroidTest.mockk)
     androidTestImplementation(AndroidTest.runner)
+    androidTestImplementation(AndroidTest.espressoCore)
     androidTestImplementation(AndroidTest.fragmentScenario)
     kaptAndroidTest(Di.compiler)
     androidTestImplementation(project(":android-test-base"))
     androidTestImplementation(project(":marketplace-di"))
     androidTestImplementation(project(":marketplace-flow-imp"))
-    // endregion
-
-    // region AndroidKtx
-    implementation(AndroidKtx.core)
     // endregion
 
     // region Base

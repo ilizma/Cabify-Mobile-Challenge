@@ -1,11 +1,9 @@
 package com.ilizma.marketplace.domain.usecase
 
-import com.ilizma.marketplace.domain.model.Article
 import com.ilizma.marketplace.domain.repository.ArticleRepository
 import io.mockk.MockKAnnotations
 import io.mockk.every
 import io.mockk.impl.annotations.RelaxedMockK
-import io.mockk.mockk
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.junit.jupiter.api.BeforeEach
@@ -36,12 +34,12 @@ internal class GetArticleQuantityUseCaseImpTest {
         @Test
         fun `given Article, when invoked, then result should be the expected Int`() {
             // given
-            val article = mockk<Article>()
+            val articleName = "articleName"
             val expected = 0
-            every { repository.getQuantity(article) } returns Single.just(expected)
+            every { repository.getQuantity(articleName) } returns Single.just(expected)
 
             // when
-            val resultObserver = useCase(article)
+            val resultObserver = useCase(articleName)
                 .observeOn(Schedulers.trampoline())
                 .test()
 

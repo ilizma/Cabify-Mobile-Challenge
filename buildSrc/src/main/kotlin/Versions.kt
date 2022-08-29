@@ -47,4 +47,5 @@ object Versions {
     const val mockkVersion = "1.12.5"
     const val junitJupiterVersion = "5.8.2"
     const val runnerVersion = "1.4.0"
+    const val espressoVersion = "3.4.0"
 }

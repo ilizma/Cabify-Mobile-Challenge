@@ -1,9 +1,9 @@
 package com.ilizma.checkout.flow.navigator
 
-import com.ilizma.checkout.flow.model.ArticlesArgs
+import com.ilizma.checkout.flow.model.ArticlesInfoArgs
 
 interface CheckoutNavigator {
 
-    fun navigate(args: ArticlesArgs)
+    fun navigate(args: ArticlesInfoArgs)
 
 }

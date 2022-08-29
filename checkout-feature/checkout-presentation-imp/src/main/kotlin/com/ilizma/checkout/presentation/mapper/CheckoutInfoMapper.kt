@@ -12,18 +12,21 @@ class CheckoutInfoMapper {
         is Mug -> PresentationCheckoutInfo.Mug(
             name = checkoutInfo.name,
             quantity = checkoutInfo.quantity,
-            price = checkoutInfo.price,
+            priceWithSymbol = checkoutInfo.priceWithSymbol,
+            totalPriceWithSymbol = checkoutInfo.totalPriceWithSymbol,
         )
         is TShirt -> PresentationCheckoutInfo.TShirt(
             name = checkoutInfo.name,
             quantity = checkoutInfo.quantity,
-            price = checkoutInfo.price,
+            priceWithSymbol = checkoutInfo.priceWithSymbol,
+            totalPriceWithSymbol = checkoutInfo.totalPriceWithSymbol,
             oldPrice = checkoutInfo.oldPrice,
         )
         is Voucher -> PresentationCheckoutInfo.Voucher(
             name = checkoutInfo.name,
             quantity = checkoutInfo.quantity,
-            price = checkoutInfo.price,
+            priceWithSymbol = checkoutInfo.priceWithSymbol,
+            totalPriceWithSymbol = checkoutInfo.totalPriceWithSymbol,
             promotion = checkoutInfo.promotion,
         )
     }
